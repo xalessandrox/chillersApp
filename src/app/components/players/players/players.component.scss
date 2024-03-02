@@ -1,0 +1,37 @@
+.badge {
+  width: 100%;
+  font-size: 1.2rem !important;
+  background-color: var(--bg-secondary);
+}
+
+.head {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.body ul {
+  display: flex;
+  min-width: 100%;
+  max-width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.ul {
+  //overflow-x: auto !important;
+  //overflow-y: auto;
+  //-ms-overflow-x: visible !important;
+}
+
+.bi.bi-person-fill-add {
+  color: green;
+}
+
+sub {
+  font-size: 0.5rem;
+  margin-left: 5px;
+}
+.add-new-player:hover {
+  cursor: pointer;
+}

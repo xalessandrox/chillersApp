@@ -1,0 +1,97 @@
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { BehaviorSubject, catchError, map, Observable, of, startWith } from "rxjs";
+import { AppState } from "../../../interfaces/AppState";
+import { CustomHttpResponse } from "../../../interfaces/CustomHttpResponse";
+import { DataState } from "../../../enums/DataState";
+import { GameService } from "../../../services/games.service";
+import { Game } from "../../../interfaces/Game";
+import { GameFormat } from "../../../enums/GameFormat";
+import { Outcome } from "../../../enums/Outcome";
+import { Player } from "../../../interfaces/Player";
+import { GameDto } from "../../../interfaces/dtos/GameDto";
+
+
+@Component( {
+	selector : 'app-games',
+	templateUrl : './games.component.html',
+	styleUrl : './games.component.scss'
+} )
+
+export class GamesComponent implements OnInit{
+	gamesState$: Observable<AppState<CustomHttpResponse<Game>>>;
+	dataSubject = new BehaviorSubject<CustomHttpResponse<Game>>( null );
+	playersOfGame: Player[] = [];
+	protected readonly DataState = DataState;
+	protected readonly Outcome = Outcome;
+	private isLoadingSubject = new BehaviorSubject<boolean>( false );
+	isLoading$ = this.isLoadingSubject.asObservable();
+	isChecked: boolean = false;
+
+	constructor( private gameService: GameService, private elementRef: ElementRef ) {
+	}
+
+	ngOnInit(): void {
+		this.gamesState$ = this.gameService.games$()
+		.pipe(
+			map( response => {
+				this.dataSubject.next( response );
+				console.log( "Games: ", response );
+				return {
+					dataState : DataState.Loaded,
+					appData : response
+				};
+			} ),
+			startWith( { dataState : DataState.Loading } ),
+			catchError( ( error: string ) => {
+				return of( {
+					dataState : DataState.Error,
+					error
+				} )
+			} )
+		)
+
+	}
+
+
+	getGameFormat( value: string ): string {
+		let res = Object
+		.values( GameFormat )
+		.filter( ( val ) => val.localeCompare( value ) );
+		return res[0];
+	}
+
+	showRow( index: number, $event, gameState ) {
+		if (gameState == 'STARTED') return;
+		// $event.stopPropagation();
+		let classToToggle = `content${ index }`;
+		let elementToToggle = document.querySelector( `.${ classToToggle }` );
+		elementToToggle.classList.toggle( 'hide' );
+
+		let elements = document.querySelectorAll( `.acc-item` );
+		elements.forEach( ( e ) => {
+			if (!e.classList.contains( classToToggle ) && !e.classList.contains( 'hide' )) {
+				e.classList.add( 'hide' );
+			}
+		} );
+	}
+
+
+	getPlayers( game: Game): Player[] {
+		this.playersOfGame = [];
+		this.playersOfGame.push(...game.team1);
+		this.playersOfGame.push(...game.team2);
+		return this.playersOfGame;
+	}
+
+	resetModalValues(game: Game) {
+		delete game.outcome;
+		delete game.mvp;
+	}
+
+	saveGame(game: Game) {
+		let gameDto:GameDto = {"id": game.id, "outcome": game.outcome, "mvp": {"id": game.mvp?.id} };
+		console.log("saving game", gameDto)
+		this.gameService.saveGame$(gameDto).subscribe();
+	}
+
+}

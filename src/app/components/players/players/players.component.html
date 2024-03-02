@@ -1,0 +1,24 @@
+<ng-container *ngIf="playersState$ | async as state" [ngSwitch]="state.dataState">
+  <ng-container *ngSwitchCase="DataState.Loaded">
+    <section>
+      <div class="container" style="color:white">
+        <div class="head">
+          <span class="me-2">PLAYERS</span>
+          <span class="add-new-player"><i class="bi bi-person-fill-add"></i><sub>New</sub></span>
+        </div>
+        <div class="body">
+          <ul style="font-size: 0.6rem">
+            <li *ngFor="let player of (state?.appData?.data?.players | playersSorterBy: 'playerPoints');">
+              <div class="badge mb-1">
+<!--                 {{ i }} -->
+                <img src="{{ player.image_url }}" width="20" alt="p_img">
+                {{ player.nickname }}
+                {{ player.playerPoints }}
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+</ng-container>
