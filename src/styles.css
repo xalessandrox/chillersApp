@@ -1,30 +1,17 @@
-:root {
-  --bg-main: #234;
-  --bg-secondary: #002;
-  --fg-main: #114;
-  --fg-secondary: #CCA;
-}
+/* Error: Can't find stylesheet to import.
+ *   ,
+ * 1 | @import "ngx-toastr/toastr";
+ *   |         ^^^^^^^^^^^^^^^^^^^
+ *   '
+ *   styles.scss 1:9  root stylesheet */
 
-* {
-  padding: 0;
-  border: 0;
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @import \"ngx-toastr/toastr\";\a   \2502          ^^^^^^^^^^^^^^^^^^^\a   \2575 \a   styles.scss 1:9  root stylesheet";
 }
-
-html {
-  font-size: 22px;
-}
-
-body {
-  background: var(--bg-main);
-  background-size: cover;
-  color: var(--bg-main);
-  overflow: auto;
-  min-height: 90dvh;
-  min-width: 100dvw;
-}
-
-li {
-  list-style: none;
-}
-
-/*# sourceMappingURL=styles.css.map */

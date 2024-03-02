@@ -31,7 +31,7 @@ export class GameService {
 			catchError( this.handleError )
 		)
 
-	saveGame$ = ( game: GameDto ) => <Observable<CustomHttpResponse<Game>>>
+	saveGame$ = ( game: Game ) => <Observable<CustomHttpResponse<Game>>>
 		this.httpClient.patch<CustomHttpResponse<Game>>
 		( `${ environment.baseUrl }:${ environment.serverPort }/games/save`, game )
 		.pipe(

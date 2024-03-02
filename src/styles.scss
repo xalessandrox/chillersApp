@@ -1,8 +1,11 @@
+@import "ngx-toastr/toastr";
+
 :root {
   --bg-main: #234;
   --bg-secondary: #002;
   --fg-main: #114;
   --fg-secondary: #CCA;
+  $btn-close-color: #3D2;
 }
 
 * {
@@ -25,4 +28,8 @@ body {
 
 li {
   list-style: none;
+}
+
+[ng\:cloak],  [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }

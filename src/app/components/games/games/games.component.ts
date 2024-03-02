@@ -8,7 +8,7 @@ import { Game } from "../../../interfaces/Game";
 import { GameFormat } from "../../../enums/GameFormat";
 import { Outcome } from "../../../enums/Outcome";
 import { Player } from "../../../interfaces/Player";
-import { GameDto } from "../../../interfaces/dtos/GameDto";
+import { ToastrService } from "ngx-toastr";
 
 
 @Component( {
@@ -17,17 +17,17 @@ import { GameDto } from "../../../interfaces/dtos/GameDto";
 	styleUrl : './games.component.scss'
 } )
 
-export class GamesComponent implements OnInit{
+export class GamesComponent implements OnInit {
 	gamesState$: Observable<AppState<CustomHttpResponse<Game>>>;
 	dataSubject = new BehaviorSubject<CustomHttpResponse<Game>>( null );
 	playersOfGame: Player[] = [];
+	isReadyToSave: boolean = false;
 	protected readonly DataState = DataState;
 	protected readonly Outcome = Outcome;
 	private isLoadingSubject = new BehaviorSubject<boolean>( false );
 	isLoading$ = this.isLoadingSubject.asObservable();
-	isChecked: boolean = false;
 
-	constructor( private gameService: GameService, private elementRef: ElementRef ) {
+	constructor( private gameService: GameService, private toastr: ToastrService ) {
 	}
 
 	ngOnInit(): void {
@@ -62,36 +62,48 @@ export class GamesComponent implements OnInit{
 
 	showRow( index: number, $event, gameState ) {
 		if (gameState == 'STARTED') return;
-		// $event.stopPropagation();
 		let classToToggle = `content${ index }`;
 		let elementToToggle = document.querySelector( `.${ classToToggle }` );
 		elementToToggle.classList.toggle( 'hide' );
 
-		let elements = document.querySelectorAll( `.acc-item` );
-		elements.forEach( ( e ) => {
-			if (!e.classList.contains( classToToggle ) && !e.classList.contains( 'hide' )) {
-				e.classList.add( 'hide' );
-			}
-		} );
+		// let elements = document.querySelectorAll( `.acc-item` );
+		// elements.forEach( ( e ) => {
+		// 	if (!e.classList.contains( classToToggle ) && !e.classList.contains( 'hide' )) {
+		// 		e.classList.add( 'hide' );
+		// 	}
+		// } );
 	}
 
 
-	getPlayers( game: Game): Player[] {
-		this.playersOfGame = [];
-		this.playersOfGame.push(...game.team1);
-		this.playersOfGame.push(...game.team2);
-		return this.playersOfGame;
+	getPlayersFromTeam1( game: Game ): Player[] {
+		return [ ...game.team1 ];
 	}
 
-	resetModalValues(game: Game) {
+	getPlayersFromTeam2( game: Game ): Player[] {
+		return [ ...game.team2 ];
+	}
+
+	resetGameValues( game: Game ) {
 		delete game.outcome;
 		delete game.mvp;
 	}
 
-	saveGame(game: Game) {
-		let gameDto:GameDto = {"id": game.id, "outcome": game.outcome, "mvp": {"id": game.mvp?.id} };
-		console.log("saving game", gameDto)
-		this.gameService.saveGame$(gameDto).subscribe();
+	saveGame( game: Game ) {
+		if (!game.mvp) {
+			console.log("No mvp");
+			this.toastr.info("Pick the best player of this game", "MVP required");
+
+		} else {
+			if (confirm( "Please confirm again your choice\nDo you want to save this game?" )) {
+				this.gameService.saveGame$( game ).subscribe();
+				window.location.reload();
+				// container.click();
+			}
+		}
+
+		// let gameDto:GameDto = {"id": game.id, "outcome": game.outcome, "mvp": {"id": game.mvp?.id} };
+		// console.log("saving game", gameDto);
+
 	}
 
 }
