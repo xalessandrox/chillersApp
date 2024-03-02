@@ -1,0 +1,27 @@
+.wrapper.row {
+  background-color: black;
+}
+
+.wrapper {
+  padding-block: 10px;
+  border: #fcf3e1 1px solid;
+  border-radius: 10px;
+}
+
+.container-fluid {
+  //background-color: #cdc98b;
+  //background-color: black;
+
+}
+
+.select-winner * {
+  color: red;
+
+  &:hover {
+    background-color: green;
+  }
+}
+
+.togglePointerEvent {
+  pointer-events: none;
+}

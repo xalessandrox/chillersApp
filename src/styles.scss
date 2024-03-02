@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --bg-main: #234;
+  --bg-secondary: #002;
+  --fg-main: #114;
+  --fg-secondary: #CCA;
+}
+
+* {
+  padding:0;
+  border: 0;
+}
+
+html {
+  font-size: 22px;
+}
+
+body {
+  background: var(--bg-main);
+  background-size: cover;
+  color: var(--bg-main);
+  overflow: auto;
+  min-height: 90dvh;
+  min-width: 100dvw;
+}
+
+li {
+  list-style: none;
+}
