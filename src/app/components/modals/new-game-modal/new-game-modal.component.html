@@ -1,0 +1,31 @@
+<ng-container>
+  <div
+      class="modal fade" id="newGameModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-md-down">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            New Game
+          </h5>
+        </div>
+
+                             <!--         BODY          -->
+        <div class="modal-body">
+          <h4 class="text-center">Pick Players</h4>
+          <hr>
+
+        </div>
+
+                              <!--         FOOTER          -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetGameValues()">
+            Close
+          </button>
+          <button type="submit" class="btn btn-success" (click)="saveGame(game)">Confirm</button>
+          <button id="closeModal" [hidden]="true" data-bs-dismiss="modal"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

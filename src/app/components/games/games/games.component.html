@@ -29,44 +29,7 @@
               SCRAP
             </button>
           </div>
-          <!-- ----------------------------------------------------------------- -->
-          <!--                               MODAL                               -->
-          <div
-              class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-               aria-hidden="true">
-            <div class="modal-dialog modal-fullscreen-md-down">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">{{ game.outcome }} </h1>
-                  <!--                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                </div>
-                <div *ngIf="!(game.outcome == Outcome.Scrap)" class="modal-body">
-                  <h4 class="text-center">Choose MVP</h4>
-                  <hr>
-                    <div>Team1 <span *ngIf="game.outcome == Outcome.Team1_Wins">( WINS )</span> </div>
-                  <div *ngFor="let player of getPlayersFromTeam1(game)" class="row">
-                    <div class="col-md-6 text-center">{{ player.nickname }}</div>
-                    <input [(ngModel)]="game.mvp" type="radio" [value]="player" id="{{ player.id }}" name="mvp" class="col-md-6"/>
-                  </div>
-                  <hr>
-                    <div>Team2 <span *ngIf="game.outcome == Outcome.Team2_Wins">( WINS )</span></div>
-                  <div *ngFor="let player of getPlayersFromTeam2(game)" class="row">
-                    <div class="col-md-6 text-center">{{ player.nickname }}</div>
-                    <input [(ngModel)]="game.mvp" type="radio" [value]="player" id="{{ player.id }}" name="mvp" class="col-md-6"/>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetGameValues(game)">
-                    Close
-                  </button>
-                  <button type="submit" class="btn btn-success" (click)="saveGame(game)">Confirm</button>
-                  <button id="closeModal" [hidden]="true" data-bs-dismiss="modal"></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--  --------------        END MODAL         ----------------------   -->
-          <!-- ----------------------------------------------------------------- -->
+
           <app-game [game]="game" [canBeSetFinished]="game.gameState == 'STARTED'" class="content{{i}}"
                     [ngClass]="{'hide' : game.gameState == 'FINISHED'}">
           </app-game>

@@ -1,11 +1,15 @@
-@import "ngx-toastr/toastr";
+@import 'ngx-toastr/toastr';
 
 :root {
   --bg-main: #234;
   --bg-secondary: #002;
-  --fg-main: #114;
+  --fg-main: #397;
   --fg-secondary: #CCA;
-  $btn-close-color: #3D2;
+  --fg-dark: #321;
+  --fg-row-odd: #222;
+  --bg-row-odd: #987;
+  --fg-row-even: #222;
+  --bg-row-even: #389;
 }
 
 * {
@@ -19,11 +23,11 @@ html {
 
 body {
   background: var(--bg-main);
+  //background: url("assets/civ6_background3.png");
   background-size: cover;
   color: var(--bg-main);
   overflow: auto;
-  min-height: 90dvh;
-  min-width: 100dvw;
+  min-height: 10dvh;
 }
 
 li {

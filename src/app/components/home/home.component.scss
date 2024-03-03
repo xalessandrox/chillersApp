@@ -1,23 +1,25 @@
-.wrapper {
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  min-width: 100vw;
 
   .title {
     background-color: var(--bg-secondary);
-    width: 100%;
+    //background: url("/assets/civ6_background3.png") top;
+    background-position-y: top;
+    background-position-x: left;
+    background-size: auto;
     height: 6rem;
-    display: flex;
-    align-items: center;
-
+    max-width: 105%;
+    //animation: animaBack 5s infinite alternate;
     h1 {
-      margin: 0 auto;
       font-weight: bold;
     }
 
   }
 
+@keyframes animaBack {
+  from {
+    background-position-y: top;
+  }
+  to {
+    background-position-y: bottom;
+  }
 }

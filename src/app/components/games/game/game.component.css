@@ -19,4 +19,8 @@
   pointer-events: none;
 }
 
+.row {
+  padding-block: 0.2em;
+}
+
 /*# sourceMappingURL=game.component.css.map */

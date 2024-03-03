@@ -1,20 +1,22 @@
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  min-width: 100vw;
-}
-.wrapper .title {
+.title {
   background-color: var(--bg-secondary);
-  width: 100%;
+  background-position-y: top;
+  background-position-x: left;
+  background-size: auto;
   height: 6rem;
-  display: flex;
-  align-items: center;
+  max-width: 105%;
 }
-.wrapper .title h1 {
-  margin: 0 auto;
+.title h1 {
   font-weight: bold;
+}
+
+@keyframes animaBack {
+  from {
+    background-position-y: top;
+  }
+  to {
+    background-position-y: bottom;
+  }
 }
 
 /*# sourceMappingURL=home.component.css.map */

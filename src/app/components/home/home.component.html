@@ -1,21 +1,24 @@
 <ng-container>
-  <ng-container>
-    <section>
-      <div class="wrapper">
-        <div class="title pe-0">
-          <h1>natural born chillers</h1>
+  <section class="container-fluid">
+    <div >
+      <div class="title row text-center pt-3">
+        <h1>natural born chillers</h1>
+      </div>
+
+      <div class="row mt-3">
+
+        <div class="col-sm-1">
+          <app-side-menu></app-side-menu>
         </div>
-        <div class="row">
-          <div class="col-sm-3">
-            <app-players></app-players>
-          </div>
 
-          <div class="col-sm-9 pe-0">
-            <app-games></app-games>
-          </div>
+        <div class="col-sm-3">
+          <app-players></app-players>
+        </div>
 
+        <div class="col-sm-8">
+          <app-games></app-games>
         </div>
       </div>
-    </section>
-  </ng-container>
+    </div>
+  </section>
 </ng-container>

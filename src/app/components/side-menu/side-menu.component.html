@@ -1,0 +1,15 @@
+<ng-container>
+  <section class="mt-3">
+    <span class="add-new-player" >
+      <i class="bi bi-person-fill-add"></i>
+<!--       <sub>New Chiller</sub> -->
+    </span>
+    <span class="add-new-player" data-bs-toggle="modal" data-bs-target="#newGameModal"
+    (click)="openModal = true">
+      <i class="bi bi-joystick"></i>
+     <p style="font-size: 0.7rem"> GAME:  {{ game | json }} </p>
+      <app-new-game-modal [game]="game"></app-new-game-modal>
+<!--       <sub>New Game</sub> -->
+    </span>
+  </section>
+</ng-container>

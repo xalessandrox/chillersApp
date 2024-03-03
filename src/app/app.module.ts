@@ -15,6 +15,9 @@ import { GamesSorterByPipe } from "./pipes/games-sorter-by.pipe";
 import { FormsModule } from "@angular/forms";
 import { ToastrModule } from "ngx-toastr";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SideMenuComponent } from './components/side-menu/side-menu.component';
+import { GameModalComponent } from './components/modals/game-modal/game-modal.component';
+import { NewGameModalComponent } from './components/modals/new-game-modal/new-game-modal.component';
 
 @NgModule( {
 	declarations : [
@@ -24,7 +27,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 		GamesComponent,
 		PlayersSorterByPipe,
 		GamesSorterByPipe,
-		GameComponent
+		GameComponent,
+		SideMenuComponent,
+  GameModalComponent,
+  NewGameModalComponent
 	],
 	imports : [
 		BrowserModule,
@@ -37,10 +43,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 			preventDuplicates : true,
 			resetTimeoutOnDuplicate : false,
 			timeOut : 4000,
-			closeButton: true,
-			progressBar: true,
-			progressAnimation: 'increasing',
-			positionClass: 'toast-top-right'
+			closeButton : true,
+			progressBar : true,
+			progressAnimation : 'increasing',
+			positionClass : 'toast-top-right'
 		} )
 	],
 	exports : [],

@@ -1,11 +1,11 @@
 .odd {
-  color: var(--fg-main);
-  background-color: rgba(136, 170, 170, 0.6666666667);
+  color: var(--fg-row-odd);
+  background-color: var(--bg-row-odd);
 }
 
 .even {
-  color: var(--fg-secondary);
-  background-color: #9AA;
+  color: var(--fg-row-even);
+  background-color: var(--bg-row-even);
 }
 
 .row {

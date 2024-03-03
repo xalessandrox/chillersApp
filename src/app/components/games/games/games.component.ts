@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of, startWith } from "rxjs";
 import { AppState } from "../../../interfaces/AppState";
 import { CustomHttpResponse } from "../../../interfaces/CustomHttpResponse";
@@ -72,38 +72,6 @@ export class GamesComponent implements OnInit {
 		// 		e.classList.add( 'hide' );
 		// 	}
 		// } );
-	}
-
-
-	getPlayersFromTeam1( game: Game ): Player[] {
-		return [ ...game.team1 ];
-	}
-
-	getPlayersFromTeam2( game: Game ): Player[] {
-		return [ ...game.team2 ];
-	}
-
-	resetGameValues( game: Game ) {
-		delete game.outcome;
-		delete game.mvp;
-	}
-
-	saveGame( game: Game ) {
-		if (!game.mvp) {
-			console.log("No mvp");
-			this.toastr.info("Pick the best player of this game", "MVP required");
-
-		} else {
-			if (confirm( "Please confirm again your choice\nDo you want to save this game?" )) {
-				this.gameService.saveGame$( game ).subscribe();
-				window.location.reload();
-				// container.click();
-			}
-		}
-
-		// let gameDto:GameDto = {"id": game.id, "outcome": game.outcome, "mvp": {"id": game.mvp?.id} };
-		// console.log("saving game", gameDto);
-
 	}
 
 }
