@@ -1,37 +1,25 @@
-.badge {
-  width: 100%;
-  font-size: 1.2rem !important;
-  background-color: var(--bg-secondary);
-}
+section {
+  color:white;
+  background: tan;
 
-.head {
-  display: flex;
-  justify-content: space-evenly;
-}
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.1rem;
+    padding: 0 !important;
+    padding-left: 1rem !important;
+    margin: 0 !important;
 
-.body ul {
-  display: flex;
-  min-width: 100%;
-  max-width: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: baseline;
-}
+    .badge {
+      font-size: 0.8rem !important;
+      background-color: var(--bg-secondary);
+      color: var(--fg-secondary);
+      margin-left: 0.5rem;
+      border: 1px solid transparent;
+    }
 
-.ul {
-  //overflow-x: auto !important;
-  //overflow-y: auto;
-  //-ms-overflow-x: visible !important;
-}
+  }
 
-.bi.bi-person-fill-add {
-  color: green;
-}
-
-sub {
-  font-size: 0.5rem;
-  margin-left: 5px;
-}
-.add-new-player:hover {
-  cursor: pointer;
 }

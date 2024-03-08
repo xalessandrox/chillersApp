@@ -17,7 +17,7 @@ import { ToastrModule } from "ngx-toastr";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { GameModalComponent } from './components/modals/game-modal/game-modal.component';
-import { NewGameModalComponent } from './components/modals/new-game-modal/new-game-modal.component';
+import { NewGameComponent } from './components/games/new-game/new-game.component';
 
 @NgModule( {
 	declarations : [
@@ -29,8 +29,8 @@ import { NewGameModalComponent } from './components/modals/new-game-modal/new-ga
 		GamesSorterByPipe,
 		GameComponent,
 		SideMenuComponent,
-  GameModalComponent,
-  NewGameModalComponent
+		GameModalComponent,
+		NewGameComponent
 	],
 	imports : [
 		BrowserModule,

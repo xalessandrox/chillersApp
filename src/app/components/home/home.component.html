@@ -4,19 +4,19 @@
       <div class="title row text-center pt-3">
         <h1>natural born chillers</h1>
       </div>
-
       <div class="row mt-3">
 
         <div class="col-sm-1">
-          <app-side-menu></app-side-menu>
+          <app-side-menu [isEditMode]="isEditMode" (switchEditMode)="switchEditMode($event)"></app-side-menu>
         </div>
 
-        <div class="col-sm-3">
-          <app-players></app-players>
+        <div class="col-sm-3 app-players">
+          <app-players [isEditMode]="isEditMode" (pickedPlayers)="pickPlayer($event)"></app-players>
         </div>
 
         <div class="col-sm-8">
-          <app-games></app-games>
+          <app-games *ngIf="!isEditMode" [isEditMode]="isEditMode"></app-games>
+          <app-new-game *ngIf="isEditMode" [isEditMode]="isEditMode" [players]="players" ></app-new-game>
         </div>
       </div>
     </div>

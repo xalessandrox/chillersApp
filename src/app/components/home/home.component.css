@@ -10,6 +10,12 @@
   font-weight: bold;
 }
 
+.app-players {
+  max-height: 100vh;
+  overflow-x: auto !important;
+  background: #998877 !important;
+}
+
 @keyframes animaBack {
   from {
     background-position-y: top;

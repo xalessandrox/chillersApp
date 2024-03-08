@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of, startWith } from "rxjs";
 import { AppState } from "../../../interfaces/AppState";
 import { CustomHttpResponse } from "../../../interfaces/CustomHttpResponse";
@@ -18,6 +18,7 @@ import { ToastrService } from "ngx-toastr";
 } )
 
 export class GamesComponent implements OnInit {
+	@Input() isEditMode: boolean;
 	gamesState$: Observable<AppState<CustomHttpResponse<Game>>>;
 	dataSubject = new BehaviorSubject<CustomHttpResponse<Game>>( null );
 	playersOfGame: Player[] = [];

@@ -3,11 +3,11 @@ section {
   font-size: 1.3rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
-section span {
-  margin-bottom: 20px;
+section .sidemenu-item:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=side-menu.component.css.map */

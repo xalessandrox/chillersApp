@@ -1,19 +1,24 @@
 
-
-  .title {
-    background-color: var(--bg-secondary);
-    //background: url("/assets/civ6_background3.png") top;
-    background-position-y: top;
-    background-position-x: left;
-    background-size: auto;
-    height: 6rem;
-    max-width: 105%;
-    //animation: animaBack 5s infinite alternate;
-    h1 {
-      font-weight: bold;
-    }
-
+.title {
+  background-color: var(--bg-secondary);
+  //background: url("/assets/civ6_background3.png") top;
+  background-position-y: top;
+  background-position-x: left;
+  background-size: auto;
+  height: 6rem;
+  max-width: 105%;
+  //animation: animaBack 5s infinite alternate;
+  h1 {
+    font-weight: bold;
   }
+
+}
+
+.app-players {
+  max-height: 100vh;
+  overflow-x: auto !important;
+  background: #998877 !important;
+}
 
 @keyframes animaBack {
   from {
