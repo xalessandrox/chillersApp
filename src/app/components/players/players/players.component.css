@@ -19,5 +19,8 @@ section ul .badge {
   margin-left: 0.5rem;
   border: 1px solid transparent;
 }
+section ul .selected {
+  color: lightgoldenrodyellow;
+}
 
 /*# sourceMappingURL=players.component.css.map */

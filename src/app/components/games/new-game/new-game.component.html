@@ -2,7 +2,36 @@
   <ng-container>
     <section>
       <div class="container" style="color:white">
-        NEW GAME
+        <div class="row">
+          <div class="col-md-6">
+            NEW GAME
+          </div>
+          <div class="col-md-6 next-format" *ngIf="players?.length < 4">
+            {{ GameFormat.Format_2V2 }}
+          </div>
+          <div class="col-md-6 show-format" *ngIf="players?.length == 4">
+            {{ GameFormat.Format_2V2 }}
+          </div>
+          <div class="col-md-6 next-format" *ngIf="players?.length > 4 && players.length < 6">
+            {{ GameFormat.Format_3V3 }}
+          </div>
+          <div class="col-md-6 show-format" *ngIf="players?.length == 6">
+            {{ GameFormat.Format_3V3 }}
+          </div>
+          <div class="col-md-6 next-format" *ngIf="players?.length > 6 && players.length < 8">
+            {{ GameFormat.Format_4V4 }}
+          </div>
+          <div class="col-md-6 show-format" *ngIf="players?.length == 8">
+            {{ GameFormat.Format_4V4 }}
+          </div>
+          <div class="col-md-6 next-format" *ngIf="players?.length > 8 && players.length < 10">
+            {{ GameFormat.Format_5V5 }}
+          </div>
+          <div class="col-md-6 show-format" *ngIf="players?.length == 10">
+            {{ GameFormat.Format_5V5 }}
+          </div>
+
+        </div>
 
         <div class="row" style="background-color: #167">
           <div class="col-sm-6 text-center">Team 1</div>
@@ -13,15 +42,15 @@
           {{ player?.nickname }}
         </div>
 
-<!--         <div class="row"> -->
-<!--           <div class="col-sm-6" *ngFor="let player of game?.team1"> -->
-<!--           </div> -->
-<!--         </div> -->
-<!--          -->
-<!--         <div class="row"> -->
-<!--           <div class="col-sm-6" *ngFor="let player of game?.team2"> -->
-<!--           </div> -->
-<!--         </div> -->
+        <!--         <div class="row"> -->
+        <!--           <div class="col-sm-6" *ngFor="let player of game?.team1"> -->
+        <!--           </div> -->
+        <!--         </div> -->
+        <!--          -->
+        <!--         <div class="row"> -->
+        <!--           <div class="col-sm-6" *ngFor="let player of game?.team2"> -->
+        <!--           </div> -->
+        <!--         </div> -->
 
         <!--           <div (click)="showRow(i, $event, game.gameState)" -->
         <!--                class="row games-rows" -->
