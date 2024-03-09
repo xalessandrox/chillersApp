@@ -8,7 +8,7 @@ import { Player } from "../../interfaces/Player";
 })
 export class HomeComponent {
 
-  @Input() players: Set<Player>;
+  @Input() players: Player[];
 
   isEditMode: boolean = true;
 
@@ -17,7 +17,7 @@ export class HomeComponent {
     this.isEditMode = isEditMode;
   }
 
-  pickPlayer( players: Set<Player> ) {
+  pickPlayer( players: Player[] ) {
     this.players = players;
   }
 
