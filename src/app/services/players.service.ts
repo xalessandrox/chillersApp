@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Player } from "../interfaces/Player";
 import { environment } from "../../environments/environment.development";
 import { CustomHttpResponse } from "../interfaces/CustomHttpResponse";
+import { Game } from "../interfaces/Game";
 
 @Injectable( {
 	providedIn : 'root'
@@ -14,7 +15,7 @@ export class PlayersService {
 	}
 
 
-	players$ = () => <Observable<CustomHttpResponse<Player>>>
+	players$ = () => <Observable<CustomHttpResponse<Player[] & Game>>>
 		this.httpClient.get<CustomHttpResponse<Player>>
 		( `${ environment.baseUrl }:${ environment.serverPort }/players/all` )
 		.pipe(

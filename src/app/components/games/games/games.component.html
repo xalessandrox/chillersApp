@@ -20,12 +20,12 @@
             <div class="col">{{game.createdAt | date: 'yy-MM-dd HH:mm'}}</div>
             <div *ngIf="game.gameState == 'FINISHED'" class="col">{{game.finishedAt | date: 'yy-MM-dd HH:mm'}}</div>
             <div *ngIf="game.gameState == 'STARTED'" class="col" [(ngModel)]="game.outcome" ngDefaultControl>
-              <button class="btn-custom btn-draw" data-bs-toggle="modal"
+              <button class="btn btn-custom btn-draw" data-bs-toggle="modal"
                       (click)="[game.outcome = Outcome.Draw]"
                       data-bs-target="#exampleModal">
                 DRAW
               </button>
-              <button class="btn-custom btn-scrap" data-bs-toggle="modal" (click)="game.outcome = Outcome.Scrap"
+              <button class="btn btn-custom btn-scrap" data-bs-toggle="modal" (click)="game.outcome = Outcome.Scrap"
                       data-bs-target="#exampleModal">
                 SCRAP
               </button>

@@ -2,24 +2,32 @@
   <ng-container *ngSwitchCase="DataState.Loaded">
     <section class="container">
       <div>
-        <div class="head text-center">
+        <div class="head text-center mb-1">
           <span>PLAYERS</span>
-          <p style="color: white">is edit mode?  {{ isEditMode }}</p>
         </div>
         <div class="body">
           <ul>
             <li *ngFor="let player of (state?.appData?.data?.players | playersSorterBy: 'playerPoints');"
                 (click)="pickPlayer(player)">
-              <input type="checkbox" [hidden]="true">
-              <div class="badge mb-1"
-                   [ngStyle]="{ 'border-color': !isEditMode ? 'transparent' : 'white'}"
-                   [ngClass]="{ 'selected' : players.includes(player) }">
+              <button class="badge mb-1"
+                      [disabled]="!player.isAvailable"
+                      [ngStyle]="{ 'border-color': !isEditMode ? 'transparent' : player.isAvailable ? 'white' : ''}"
+                      [ngClass]="{ 'selected' : playersNextGame.includes(player) }">
                 <img src="{{ player.image_url }}" width="20" alt="p_img">
                 {{ player.nickname }}
                 {{ player.playerPoints }}
-              </div>
+                <span *ngIf="!player.isAvailable">
+                  <i class="bi bi-play-fill"></i>
+                </span>
+              </button>
             </li>
           </ul>
+        </div>
+        <div class="footer" *ngIf="isEditMode">
+          <button class="btn btn-custom btn-reset-teams" (click)="resetTeams()">Reset</button>
+          <button class="btn btn-custom btn-reset-teams" (click)="resetTeams()"
+                  [disabled]="playersNextGame.length < 4 || playersNextGame.length % 2 == 1">Start
+          </button>
         </div>
       </div>
     </section>

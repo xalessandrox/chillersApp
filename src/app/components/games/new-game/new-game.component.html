@@ -30,52 +30,15 @@
           <div class="col-md-6 show-format" *ngIf="players?.length == 10">
             {{ GameFormat.Format_5V5 }}
           </div>
-
         </div>
 
         <div class="row" style="background-color: #167">
-          <div class="col-sm-6 text-center">Team 1</div>
-          <div class="col-sm-6 text-center">Team 2</div>
+          <div class="col-sm-12 text-center">Pick players from the list to add them for the new game</div>
         </div>
 
-        <div class="row" *ngFor="let player of players">
-          {{ player?.nickname }}
+        <div class="row text-center" *ngFor="let player of players">
+          <div class="col-sm-12 text-center">{{ player?.nickname }}</div>
         </div>
-
-        <!--         <div class="row"> -->
-        <!--           <div class="col-sm-6" *ngFor="let player of game?.team1"> -->
-        <!--           </div> -->
-        <!--         </div> -->
-        <!--          -->
-        <!--         <div class="row"> -->
-        <!--           <div class="col-sm-6" *ngFor="let player of game?.team2"> -->
-        <!--           </div> -->
-        <!--         </div> -->
-
-        <!--           <div (click)="showRow(i, $event, game.gameState)" -->
-        <!--                class="row games-rows" -->
-        <!--                *ngFor="let game of (state?.appData?.data?.games) | gamesSorterBy : 'createdAtDesc'; let i = index; odd as odd; even as even;" -->
-        <!--                [ngClass]="{ 'odd' : odd, 'even' : even }"> -->
-        <!--             <div class="test col-sm-2">{{ getGameFormat(game.gameFormat) }}</div> -->
-        <!--             <div class="col-sm-3">{{game.gameState}}</div> -->
-        <!--             <div class="col">{{game.createdAt | date: 'yy-MM-dd HH:mm'}}</div> -->
-        <!--             <div *ngIf="game.gameState == 'FINISHED'" class="col">{{game.finishedAt | date: 'yy-MM-dd HH:mm'}}</div> -->
-        <!--             <div *ngIf="game.gameState == 'STARTED'" class="col" [(ngModel)]="game.outcome" ngDefaultControl> -->
-        <!--               <button class="btn-custom btn-draw" data-bs-toggle="modal" -->
-        <!--                       (click)="[game.outcome = Outcome.Draw]" -->
-        <!--                       data-bs-target="#exampleModal"> -->
-        <!--                 DRAW -->
-        <!--               </button> -->
-        <!--               <button class="btn-custom btn-scrap" data-bs-toggle="modal" (click)="game.outcome = Outcome.Scrap" -->
-        <!--                       data-bs-target="#exampleModal"> -->
-        <!--                 SCRAP -->
-        <!--               </button> -->
-        <!--             </div> -->
-
-        <!--             <app-game [game]="game" [canBeSetFinished]="game.gameState == 'STARTED'" class="content{{i}}" -->
-        <!--                       [ngClass]="{'hide' : game.gameState == 'FINISHED'}"> -->
-        <!--             </app-game> -->
-        <!--           </div> -->
 
 
       </div>

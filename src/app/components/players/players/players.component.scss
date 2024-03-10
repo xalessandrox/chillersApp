@@ -2,6 +2,10 @@ section {
   color:white;
   background: tan;
 
+  i  {
+    color: white;
+  }
+
   ul {
     display: flex;
     flex-direction: column;
@@ -21,9 +25,11 @@ section {
     }
 
     .selected {
-      color: lightgoldenrodyellow;
+      color: yellowgreen;
     }
 
   }
+
+
 
 }

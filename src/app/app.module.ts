@@ -42,9 +42,9 @@ import { NewGameComponent } from './components/games/new-game/new-game.component
 		ToastrModule.forRoot( {
 			preventDuplicates : true,
 			resetTimeoutOnDuplicate : false,
-			timeOut : 4000,
+			timeOut : 3000,
 			closeButton : true,
-			progressBar : true,
+			progressBar : false,
 			progressAnimation : 'increasing',
 			positionClass : 'toast-top-right'
 		} )

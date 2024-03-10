@@ -2,6 +2,9 @@ section {
   color: white;
   background: tan;
 }
+section i {
+  color: white;
+}
 section ul {
   display: flex;
   flex-direction: column;
@@ -20,7 +23,7 @@ section ul .badge {
   border: 1px solid transparent;
 }
 section ul .selected {
-  color: lightgoldenrodyellow;
+  color: yellowgreen;
 }
 
 /*# sourceMappingURL=players.component.css.map */

@@ -16,20 +16,4 @@
   display: none;
 }
 
-.btn-custom {
-  color: white;
-  background-color: transparent;
-  border: #eee 1px solid;
-  padding: 1px 20px;
-  border-radius: 10px;
-}
-.btn-custom.btn-draw:hover {
-  color: darkorange;
-  border-color: gold;
-}
-.btn-custom.btn-scrap:hover {
-  color: darkslateblue;
-  border-color: slateblue;
-}
-
 /*# sourceMappingURL=games.component.css.map */

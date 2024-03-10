@@ -14,7 +14,7 @@
 
 * {
   margin: 0;
-  padding:0;
+  padding: 0;
   border: 0;
 }
 
@@ -29,12 +29,73 @@ body {
   color: var(--bg-main);
   overflow: auto;
   min-height: 10dvh;
+
+  .btn-custom {
+    color: white;
+    background-color: transparent;
+    padding: 1px 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px transparent, 1px 1px transparentize(#FFF, 0.5);
+
+
+    &.btn-draw {
+      border: darkorange 1px solid;
+
+      &:hover {
+        color: darkorange;
+        border-color: gold;
+        box-shadow: 1px 1px darkorange;
+      }
+
+      &:active {
+        box-shadow: inherit;
+      }
+    }
+
+    &.btn-scrap {
+      border: darkslateblue 1px solid;
+
+      &:hover {
+        color: darkslateblue;
+        border-color: slateblue;
+        box-shadow: 1px 1px darkslateblue;
+      }
+
+      &:active {
+        box-shadow: inherit;
+      }
+    }
+
+    &.btn-reset-teams {
+      border: darkolivegreen 1px solid;
+
+      &:hover {
+        color: darkolivegreen;
+        border-color: olivedrab;
+        box-shadow: 1px 1px 200px darkolivegreen;
+      }
+
+      &:active {
+        box-shadow: 1px 1px #eee, -1px -1px #555;
+
+      }
+    }
+
+  }
 }
 
 li {
   list-style: none;
 }
 
-[ng\:cloak],  [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+[ng\:cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
+}
+
+button:disabled,
+button[disabled] {
+  opacity: 0.6;
+  color: gray !important;
+  text-shadow: 1px 1px white !important;
+  pointer-events: none;
 }
