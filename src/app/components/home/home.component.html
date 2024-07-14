@@ -1,24 +1,35 @@
 <ng-container>
-  <section class="container-fluid">
-    <div >
-      <div class="title row text-center pt-3">
-        <h1>natural born chillers</h1>
+  <section class="container-fluid d-flex flex-column justify-content-center align-items-stretch">
+    <div class="title row text-center pt-3">
+      <h1>natural born chillers</h1>
+
+    </div>
+    <div class="row mt-3">
+
+      <div class="col-sm-1">
+        <app-side-menu [isEditMode]="isEditMode" (switchEditMode)="switchEditMode($event)"></app-side-menu>
       </div>
-      <div class="row mt-3">
 
-        <div class="col-sm-1">
-          <app-side-menu [isEditMode]="isEditMode" (switchEditMode)="switchEditMode($event)"></app-side-menu>
-        </div>
-
-        <div class="col-sm-3 app-players">
-          <app-players [isEditMode]="isEditMode" (pickedPlayers)="pickPlayer($event)"></app-players>
-        </div>
-
-        <div class="col-sm-8">
-          <app-games *ngIf="!isEditMode" [isEditMode]="isEditMode"></app-games>
-          <app-new-game *ngIf="isEditMode" [isEditMode]="isEditMode" [players]="players" ></app-new-game>
-        </div>
+      <div class="col-sm-3 app-players">
+        <app-players [isEditMode]="isEditMode" (pickedPlayers)="pickPlayers($event)"
+                     (pickedPlayer)="sendPlayerToComponent($event)"
+                     ></app-players>
       </div>
+
+      <div class="col-sm-8">
+        <app-games *ngIf="!isEditMode"
+                   [isEditMode]="isEditMode"
+        ></app-games>
+        <app-new-game *ngIf="isEditMode"
+                      [isEditMode]="isEditMode"
+                      [players]="players"
+                      [pickedPlayer]="pickedPlayer"
+                      (onModeChange)="isEditMode = $event"
+        ></app-new-game>
+      </div>
+    </div>
+    <div class="civ-logo">
+<!--       <img src="/assets/civ6_background3.png" height="448" width="1920" alt="background image"> -->
     </div>
   </section>
 </ng-container>

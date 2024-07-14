@@ -8,6 +8,7 @@
     </div>
 
     <div [ngStyle]="isEditMode ? { color : 'red' } : { color : 'green' }">
+<!--       Setting editMode to true allows the instantiation of components through *ngIf="true" -->
       <p class="add-new-game sidemenu-item" (click)="switchIsEditMode()">
         <i class="bi bi-joystick"></i>
 

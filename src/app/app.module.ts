@@ -20,38 +20,36 @@ import { GameModalComponent } from './components/modals/game-modal/game-modal.co
 import { NewGameComponent } from './components/games/new-game/new-game.component';
 
 @NgModule( {
-	declarations : [
-		AppComponent,
-		HomeComponent,
-		PlayersComponent,
-		GamesComponent,
-		PlayersSorterByPipe,
-		GamesSorterByPipe,
-		GameComponent,
-		SideMenuComponent,
-		GameModalComponent,
-		NewGameComponent
-	],
-	imports : [
-		BrowserModule,
-		BrowserAnimationsModule,
-		AppRoutingModule,
-		HttpClientModule,
-		NgOptimizedImage,
-		FormsModule,
-		ToastrModule.forRoot( {
-			preventDuplicates : true,
-			resetTimeoutOnDuplicate : false,
-			timeOut : 3000,
-			closeButton : true,
-			progressBar : false,
-			progressAnimation : 'increasing',
-			positionClass : 'toast-top-right'
-		} )
-	],
-	exports : [],
-	providers : [ PlayersService, GameService ],
-	bootstrap : [ AppComponent ]
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        NgOptimizedImage,
+        FormsModule,
+        ToastrModule.forRoot({
+            preventDuplicates: true,
+            resetTimeoutOnDuplicate: false,
+            timeOut: 3000,
+            closeButton: true,
+            progressBar: false,
+            progressAnimation: 'increasing',
+            positionClass: 'toast-top-right'
+        }),
+        HomeComponent,
+        PlayersComponent,
+        GamesComponent,
+        PlayersSorterByPipe,
+        GamesSorterByPipe,
+        GameComponent,
+        SideMenuComponent,
+        GameModalComponent,
+        NewGameComponent
+    ],
+    exports: [],
+    providers: [PlayersService, GameService],
+    bootstrap: [AppComponent]
 } )
 export class AppModule {
 }

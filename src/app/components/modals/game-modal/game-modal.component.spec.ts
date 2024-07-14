@@ -8,8 +8,8 @@ describe('GameModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GameModalComponent]
-    })
+    imports: [GameModalComponent]
+})
     .compileComponents();
     
     fixture = TestBed.createComponent(GameModalComponent);

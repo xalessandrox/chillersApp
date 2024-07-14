@@ -3,7 +3,8 @@ import { Player } from "../interfaces/Player";
 import { Game } from "../interfaces/Game";
 
 @Pipe({
-	name: 'gamesSorterBy'
+    name: 'gamesSorterBy',
+    standalone: true
 })
 export class GamesSorterByPipe implements PipeTransform {
 

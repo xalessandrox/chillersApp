@@ -8,12 +8,16 @@ import { DataState } from "../../../enums/DataState";
 import { Player } from "../../../interfaces/Player";
 import { Outcome } from "../../../enums/Outcome";
 import { ToastrService } from "ngx-toastr";
+import { GameModalComponent } from '../../modals/game-modal/game-modal.component';
+import { AsyncPipe, NgClass, NgFor, NgIf, NgStyle, NgSwitch, NgSwitchCase } from '@angular/common';
 
-@Component( {
-	selector : 'app-game',
-	templateUrl : './game.component.html',
-	styleUrl : './game.component.scss'
-} )
+@Component({
+    selector: 'app-game',
+    templateUrl: './game.component.html',
+    styleUrl: './game.component.scss',
+    standalone: true,
+    imports: [NgIf, NgSwitch, NgSwitchCase, NgClass, NgStyle, NgFor, GameModalComponent, AsyncPipe]
+})
 export class GameComponent implements OnInit {
 
 	@Input() game: Game;

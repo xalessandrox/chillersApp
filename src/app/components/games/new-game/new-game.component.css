@@ -10,4 +10,11 @@
   color: #fcf3e1;
 }
 
+.new-game-wrapper {
+  min-height: 60dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /*# sourceMappingURL=new-game.component.css.map */

@@ -4,11 +4,15 @@ import { Outcome } from "../../../enums/Outcome";
 import { Player } from "../../../interfaces/Player";
 import { GameService } from "../../../services/games.service";
 import { ToastrService } from "ngx-toastr";
+import { FormsModule } from '@angular/forms';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-game-modal',
-  templateUrl: './game-modal.component.html',
-  styleUrl: './game-modal.component.scss'
+    selector: 'app-game-modal',
+    templateUrl: './game-modal.component.html',
+    styleUrl: './game-modal.component.scss',
+    standalone: true,
+    imports: [NgIf, NgFor, FormsModule]
 })
 export class GameModalComponent implements OnInit{
   @Input() game: Game;

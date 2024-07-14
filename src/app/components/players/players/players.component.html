@@ -12,8 +12,8 @@
               <button class="badge mb-1"
                       [disabled]="!player.isAvailable"
                       [ngStyle]="{ 'border-color': !isEditMode ? 'transparent' : player.isAvailable ? 'white' : ''}"
-                      [ngClass]="{ 'selected' : playersNextGame.includes(player) }">
-                <img src="{{ player.image_url }}" width="20" alt="p_img">
+                      [ngClass]="{ 'selected' : playersNextGame.includes(player) && isEditMode }">
+                <img src="{{ player.image_url }}" width="20" height="auto" alt="p_img">
                 {{ player.nickname }}
                 {{ player.playerPoints }}
                 <span *ngIf="!player.isAvailable">
@@ -23,12 +23,7 @@
             </li>
           </ul>
         </div>
-        <div class="footer" *ngIf="isEditMode">
-          <button class="btn btn-custom btn-reset-teams" (click)="resetTeams()">Reset</button>
-          <button class="btn btn-custom btn-reset-teams" (click)="resetTeams()"
-                  [disabled]="playersNextGame.length < 4 || playersNextGame.length % 2 == 1">Start
-          </button>
-        </div>
+
       </div>
     </section>
   </ng-container>

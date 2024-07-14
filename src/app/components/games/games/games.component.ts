@@ -9,13 +9,19 @@ import { GameFormat } from "../../../enums/GameFormat";
 import { Outcome } from "../../../enums/Outcome";
 import { Player } from "../../../interfaces/Player";
 import { ToastrService } from "ngx-toastr";
+import { GamesSorterByPipe } from '../../../pipes/games-sorter-by.pipe';
+import { GameComponent } from '../game/game.component';
+import { FormsModule } from '@angular/forms';
+import { AsyncPipe, DatePipe, NgClass, NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 
 
-@Component( {
-	selector : 'app-games',
-	templateUrl : './games.component.html',
-	styleUrl : './games.component.scss'
-} )
+@Component({
+    selector: 'app-games',
+    templateUrl: './games.component.html',
+    styleUrl: './games.component.scss',
+    standalone: true,
+    imports: [NgIf, NgSwitch, NgSwitchCase, NgFor, NgClass, FormsModule, GameComponent, AsyncPipe, DatePipe, GamesSorterByPipe]
+})
 
 export class GamesComponent implements OnInit {
 	@Input() isEditMode: boolean;

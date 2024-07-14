@@ -21,14 +21,23 @@
 html {
   font-size: 20px;
 }
-
+@keyframes animaBack {
+  from {
+    background-position-y: 0;
+  }
+  to {
+    background-position-y: 1000px;
+  }
+}
 body {
   background: var(--bg-main);
-  //background: url("assets/civ6_background3.png");
-  background-size: cover;
+  //background: url("assets/civ6_background3.png") no-repeat;
+  //background-size: auto;
+  //background-blend-mode: darken;
   color: var(--bg-main);
   overflow: auto;
   min-height: 10dvh;
+  animation: animaBack 5s infinite ease;
 
   .btn-custom {
     color: white;
@@ -80,6 +89,23 @@ body {
 
       }
     }
+
+    &.btn-make-teams {
+      border: darkcyan 1px solid;
+
+      &:hover {
+        color: darkcyan;
+        border-color: cyan;
+        box-shadow: 1px 1px 200px darkcyan;
+      }
+
+      &:active {
+        box-shadow: 1px 1px #eee, -1px -1px #555;
+
+      }
+    }
+
+
 
   }
 }

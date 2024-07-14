@@ -1,13 +1,19 @@
 .title {
-  background-color: var(--bg-secondary);
-  background-position-y: top;
-  background-position-x: left;
-  background-size: auto;
+  background: var(--bg-secondary);
   height: 6rem;
   max-width: 105%;
 }
 .title h1 {
   font-weight: bold;
+}
+
+div.civ-logo {
+  z-index: -1;
+  overflow-x: hidden !important;
+}
+div.civ-logo img {
+  opacity: 0.1;
+  animation: animaBack 60s infinite alternate cubic-bezier(1, 0.99, 0, 0.01);
 }
 
 .app-players {
@@ -18,10 +24,10 @@
 
 @keyframes animaBack {
   from {
-    background-position-y: top;
+    transform: translateX(-100%);
   }
   to {
-    background-position-y: bottom;
+    transform: translateX(100%);
   }
 }
 
