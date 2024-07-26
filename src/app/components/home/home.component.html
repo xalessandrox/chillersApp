@@ -11,8 +11,9 @@
       </div>
 
       <div class="col-sm-3 app-players">
-        <app-players [isEditMode]="isEditMode" (pickedPlayers)="pickPlayers($event)"
-                     (pickedPlayer)="sendPlayerToComponent($event)"
+        <app-players #playersComponent [isEditMode]="isEditMode"
+                     (playersNextGameEmitter)="sendPlayersNextGameToNewGame($event)"
+                     [playersNextGame]="playersNextGame"
                      ></app-players>
       </div>
 
@@ -23,8 +24,9 @@
         <app-new-game *ngIf="isEditMode"
                       [isEditMode]="isEditMode"
                       [players]="players"
-                      [pickedPlayer]="pickedPlayer"
+                      [playersNextGame]="playersNextGame"
                       (onModeChange)="isEditMode = $event"
+                      (unselectPlayersNextGame)="unselectPlayersNextGame()"
         ></app-new-game>
       </div>
     </div>

@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import { PlayersService } from "../../../services/players.service";
 import { BehaviorSubject, catchError, map, Observable, of, startWith } from "rxjs";
 import { AppState } from "../../../interfaces/AppState";
@@ -8,7 +16,7 @@ import { CustomHttpResponse } from "../../../interfaces/CustomHttpResponse";
 import { PlayersSorterByPipe } from "../../../pipes/players-sorter-by.pipe";
 import { Game } from "../../../interfaces/Game";
 import { ToastrService } from "ngx-toastr";
-import { AsyncPipe, NgClass, NgFor, NgIf, NgStyle, NgSwitch, NgSwitchCase } from '@angular/common';
+import { AsyncPipe, JsonPipe, NgClass, NgFor, NgIf, NgStyle, NgSwitch, NgSwitchCase } from '@angular/common';
 
 @Component({
     selector: 'app-players',
@@ -17,22 +25,27 @@ import { AsyncPipe, NgClass, NgFor, NgIf, NgStyle, NgSwitch, NgSwitchCase } from
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [PlayersSorterByPipe],
     standalone: true,
-    imports: [NgIf, NgSwitch, NgSwitchCase, NgFor, NgStyle, NgClass, AsyncPipe, PlayersSorterByPipe]
+  imports : [ NgIf, NgSwitch, NgSwitchCase, NgFor, NgStyle, NgClass, AsyncPipe, PlayersSorterByPipe, JsonPipe ]
 })
 export class PlayersComponent implements OnInit {
-  @Output() pickedPlayers: EventEmitter<Player[]> = new EventEmitter<Player[]>
-	@Output() switchEditMode: EventEmitter<boolean> = new EventEmitter<boolean>;
-	// @Output() areTeamsMade: EventEmitter<boolean> = new EventEmitter<boolean>;
-	@Input() isEditMode: boolean;
-  @Output() pickedPlayer: EventEmitter<Player> = new EventEmitter<Player>;
-	playersState$: Observable<AppState<CustomHttpResponse<Player>>>;
-	dataSubject = new BehaviorSubject<CustomHttpResponse<Player[] & Game>>( null );
+
 	protected readonly DataState = DataState;
 	private isLoadingSubject = new BehaviorSubject<boolean>( false );
-	isLoading$ = this.isLoadingSubject.asObservable();
-  playersNextGame: Player[] = [];
+	playersState$: Observable<AppState<CustomHttpResponse<Player>>>;
+	dataSubject = new BehaviorSubject<CustomHttpResponse<Player[] & Game>>( null );
+
+  _playersNextGame: Player[] = [];
   playersNotAvailable: Player[]	= [];
-	constructor( private playerService: PlayersService, private sorter: PlayersSorterByPipe, private toastr: ToastrService ) {
+	@Input() isEditMode: boolean;
+  @Input() playersNextGameReset!: Player[];
+  @Input() playersNextGame: Player[];
+	@Output() switchEditMode: EventEmitter<boolean> = new EventEmitter<boolean>;
+  @Output() playersNextGameEmitter: EventEmitter<Player[]> = new EventEmitter<Player[]>;
+	isLoading$ = this.isLoadingSubject.asObservable();
+	constructor( private playerService: PlayersService,
+               private sorter: PlayersSorterByPipe,
+               private toastr: ToastrService,
+               private changeDetectorRef: ChangeDetectorRef ) {
 	}
 
 
@@ -42,7 +55,7 @@ export class PlayersComponent implements OnInit {
 			map( response => {
 				this.dataSubject.next( response );
 				this.start();
-				console.log( "response - - - - > ", response );
+				// console.log( "response - - - - > ", response );
 				return {
 					dataState : DataState.Loaded,
 					appData : response
@@ -59,8 +72,8 @@ export class PlayersComponent implements OnInit {
 
 	}
 
-  isAvailable( player: any ) {
-    return !this.playersNotAvailable.find( pl => pl.id == player.id );
+  isAvailable( pickedPlayer: any ) {
+    return !this.playersNotAvailable.find( busyPlayer => busyPlayer.id == pickedPlayer.id );
   }
 
 	start() {
@@ -79,19 +92,27 @@ export class PlayersComponent implements OnInit {
 		}
 	}
 
-
   pickPlayer( player: Player ) {
+    console.log(this._playersNextGame);
     if (this.isEditMode && player.isAvailable) {
-      if (this.playersNextGame.includes( player )) {
-        this.playersNextGame.splice( this.playersNextGame.indexOf( player ), 1 );
+      if (this._playersNextGame.includes( player )) {
+        this._playersNextGame.splice( this._playersNextGame.indexOf( player ), 1 );
       } else {
-        this.playersNextGame.push( player );
+        this._playersNextGame.push( player );
       }
 
-      this.pickedPlayer.emit( player );
+      this.playersNextGameEmitter.emit( structuredClone(this._playersNextGame ));
     } else if (this.isEditMode && !player.isAvailable) {
       this.toastr.warning( `${ player.nickname } is playing`, "" );
     }
   }
+
+  _unselectPlayersNextGame() {
+    this._playersNextGame = [];
+    this.changeDetectorRef.markForCheck();
+    this.changeDetectorRef.detectChanges();
+    // this.playersState$.pipe()
+  }
+
 }
 

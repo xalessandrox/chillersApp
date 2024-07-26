@@ -12,18 +12,14 @@
               <button class="badge mb-1"
                       [disabled]="!player.isAvailable"
                       [ngStyle]="{ 'border-color': !isEditMode ? 'transparent' : player.isAvailable ? 'white' : ''}"
-                      [ngClass]="{ 'selected' : playersNextGame.includes(player) && isEditMode }">
+                      [ngClass]="{ 'selected' : _playersNextGame.includes(player) && isEditMode }">
                 <img src="{{ player.image_url }}" width="20" height="auto" alt="p_img">
                 {{ player.nickname }}
-                {{ player.playerPoints }}
-                <span *ngIf="!player.isAvailable">
-                  <i class="bi bi-play-fill"></i>
-                </span>
+                {{ player.playerPoints }}<span *ngIf="!player.isAvailable"><i class="bi bi-play-fill"></i></span>
               </button>
             </li>
           </ul>
         </div>
-
       </div>
     </section>
   </ng-container>
