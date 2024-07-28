@@ -1,33 +1,33 @@
 <ng-container>
   <ng-container>
-    <section>
-      <div class="new-game-wrapper">
-        <div class="row">
-          <div class="col-md-6">
-            NEW GAME
-          </div>
-          <div class="col-md-6 next-format" *ngIf="playersNextGame?.length < 4">
+    <section class="card">
+      <div class="card-header text-center">
+        <span>NEW GAME</span>
+      </div>
+      <div class="card-body">
+        <div class="row text-center">
+          <div class="col next-format" *ngIf="playersNextGame?.length < 4">
             {{ GameFormat.FORMAT_2V2 }}
           </div>
-          <div class="col-md-6 show-format" *ngIf="playersNextGame?.length == 4">
+          <div class="col show-format" *ngIf="playersNextGame?.length == 4">
             {{ GameFormat.FORMAT_2V2 }}
           </div>
-          <div class="col-md-6 next-format" *ngIf="playersNextGame?.length > 4 && playersNextGame.length < 6">
+          <div class="col next-format" *ngIf="playersNextGame?.length > 4 && playersNextGame.length < 6">
             {{ GameFormat.FORMAT_3V3 }}
           </div>
-          <div class="col-md-6 show-format" *ngIf="playersNextGame?.length == 6">
+          <div class="col show-format" *ngIf="playersNextGame?.length == 6">
             {{ GameFormat.FORMAT_3V3 }}
           </div>
-          <div class="col-md-6 next-format" *ngIf="playersNextGame?.length > 6 && playersNextGame.length < 8">
+          <div class="col next-format" *ngIf="playersNextGame?.length > 6 && playersNextGame.length < 8">
             {{ GameFormat.FORMAT_4V4 }}
           </div>
-          <div class="col-md-6 show-format" *ngIf="playersNextGame?.length == 8">
+          <div class="col show-format" *ngIf="playersNextGame?.length == 8">
             {{ GameFormat.FORMAT_4V4 }}
           </div>
-          <div class="col-md-6 next-format" *ngIf="playersNextGame?.length > 8 && playersNextGame.length < 10">
+          <div class="col next-format" *ngIf="playersNextGame?.length > 8 && playersNextGame.length < 10">
             {{ GameFormat.FORMAT_5V5 }}
           </div>
-          <div class="col-md-6 show-format" *ngIf="playersNextGame?.length == 10">
+          <div class="col show-format" *ngIf="playersNextGame?.length == 10">
             {{ GameFormat.FORMAT_5V5 }}
           </div>
         </div>
@@ -37,9 +37,9 @@
           <div class="col-sm-12 text-center">When you are ready click on the Make Teams button</div>
         </div>
 
-        <div class="row text-center" *ngIf="!areTeamsMade && playersNextGame?.length > 0">
-          <div class="row text-center" *ngFor="let player of playersNextGame">
-            <div class="col-sm-12 text-center">{{ player?.nickname }}</div>
+        <div class="row" *ngIf="!areTeamsMade && playersNextGame?.length > 0">
+          <div class="row" *ngFor="let player of playersNextGame">
+            <div class="col badge mb-1">{{ player?.nickname }}</div>
           </div>
         </div>
 
@@ -49,12 +49,13 @@
             <p *ngIf="i < playersNextGame.length / 2">{{ player.nickname }}</p>
           </div>
           <h3 style="font-size: 1.2rem">Team 2</h3>
+
           <div class="col-sm-12" *ngFor="let player of playersNextGame; let i = index">
             <p *ngIf="i >= playersNextGame.length / 2">{{ player.nickname }}</p>
           </div>
         </div>
         <div class="row d-flex mt-auto p-5" *ngIf="isEditMode">
-          <button [disabled]="!playersNextGame" class="btn btn-custom btn-reset-teams" (click)="resetTeams()">Reset</button>
+          <button [disabled]="!playersNextGame || playersNextGame?.length == 0" class="btn btn-custom btn-reset-teams" (click)="resetTeams()">Reset</button>
           <button class="btn btn-custom btn-make-teams" (click)="makeTeams()"
                   *ngIf="!gameCanStart && playersNextGame?.length > 0"
                   [disabled]="playersNextGame.length < 4 || playersNextGame.length % 2 == 1">Make Teams

@@ -1,4 +1,8 @@
-
+section {
+  color:white;
+  background: var(--bg-main-light);
+  box-shadow: 0px 0px 7px gray, 0px 0px 20px black;
+}
 .odd {
   color: var(--fg-row-odd);
   background-color: var(--bg-row-odd);

@@ -1,26 +1,24 @@
 <ng-container *ngIf="playersState$ | async as state" [ngSwitch]="state.dataState">
   <ng-container *ngSwitchCase="DataState.Loaded">
-    <section class="container">
-      <div>
-        <div class="head text-center mb-1">
-          <span>PLAYERS</span>
-        </div>
-        <div class="body">
-          <ul>
-            <li *ngFor="let player of (state?.appData?.data?.players | playersSorterBy: 'playerPoints');"
-                (click)="pickPlayer(player)">
-              <button class="badge mb-1"
-                      [disabled]="!player.isAvailable"
-                      [ngStyle]="{ 'border-color': !isEditMode ? 'transparent' : player.isAvailable ? 'white' : ''}"
-                      [ngClass]="{ 'selected' : _playersNextGame.includes(player) && isEditMode }">
-                <img src="{{ player.image_url }}" width="20" height="auto" alt="p_img">
-                {{ player.nickname }}
-                {{ player.playerPoints }}<span *ngIf="!player.isAvailable"><i class="bi bi-play-fill"></i></span>
-              </button>
-            </li>
-          </ul>
-        </div>
+    <section class="card">
+      <div class="card-header text-center">
+        <span>PLAYERS</span>
+      </div>
+      <div class="card-body">
+        <ul >
+          <li *ngFor="let player of (state?.appData?.data?.players | playersSorterBy: 'playerPoints');">
+            <button class="badge mb-1" (click)="pickPlayer(player)"
+                    [disabled]="!player.isAvailable"
+
+                    [ngClass]="{ 'selected' : _playersNextGame.includes(player) && isEditMode }">
+              <img src="{{ player.image_url }}" width="20" height="auto" alt="p_img">
+              {{ player.nickname }}
+              {{ player.playerPoints }}<span *ngIf="!player.isAvailable"><i class="bi bi-play-fill"></i></span>
+            </button>
+          </li>
+        </ul>
       </div>
     </section>
   </ng-container>
 </ng-container>
+<!-- [ngStyle]="{ 'border-color': !isEditMode ? 'transparent' : player.isAvailable ? 'green' : 'brown'}" -->

@@ -1,9 +1,11 @@
 section {
   color:white;
-  background: tan;
+  background: var(--bg-main-light);
+  box-shadow: 0px 0px 7px gray, 0px 0px 20px black;
 
   i  {
-    color: white;
+    padding-left: 0.5rem;
+    color: hsla(30, 30%, 30%, 0.4);
   }
 
   ul {
@@ -18,7 +20,7 @@ section {
 
     .badge {
       font-size: 0.8rem !important;
-      background-color: var(--bg-secondary);
+      background-color: var(--bg-main);
       color: var(--fg-secondary);
       margin-left: 0.5rem;
       border: 1px solid transparent;
@@ -27,6 +29,12 @@ section {
     .selected {
       color: yellowgreen;
     }
+
+    li.list-group-item {
+      background: hsla(50, 120%, 50% , 0.2);
+      width: 100%;
+    }
+
 
   }
 

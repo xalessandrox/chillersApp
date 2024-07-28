@@ -1,37 +1,32 @@
 <ng-container>
-  <section class="container-fluid d-flex flex-column justify-content-center align-items-stretch">
-    <div class="title row text-center pt-3">
+  <section class="container-fluid d-flex flex-column justify-content-between align-items-stretch">
+    <div class="header row text-center pt-3">
       <h1>natural born chillers</h1>
-
     </div>
-    <div class="row mt-3">
-
-      <div class="col-sm-1">
+    <div class="row mt-3 content">
+      <div class="col-sm-1 side-menu">
         <app-side-menu [isEditMode]="isEditMode" (switchEditMode)="switchEditMode($event)"></app-side-menu>
       </div>
 
-      <div class="col-sm-3 app-players">
+      <div class="col-sm-3 players">
         <app-players #playersComponent [isEditMode]="isEditMode"
                      (playersNextGameEmitter)="sendPlayersNextGameToNewGame($event)"
-                     [playersNextGame]="playersNextGame"
-                     ></app-players>
+                     [playersNextGame]="playersNextGame">
+        </app-players>
       </div>
 
       <div class="col-sm-8">
         <app-games *ngIf="!isEditMode"
-                   [isEditMode]="isEditMode"
-        ></app-games>
+                   [isEditMode]="isEditMode">
+        </app-games>
         <app-new-game *ngIf="isEditMode"
                       [isEditMode]="isEditMode"
                       [players]="players"
                       [playersNextGame]="playersNextGame"
                       (onModeChange)="isEditMode = $event"
-                      (unselectPlayersNextGame)="unselectPlayersNextGame()"
-        ></app-new-game>
+                      (unselectPlayersNextGame)="unselectPlayersNextGame()">
+        </app-new-game>
       </div>
-    </div>
-    <div class="civ-logo">
-<!--       <img src="/assets/civ6_background3.png" height="448" width="1920" alt="background image"> -->
     </div>
   </section>
 </ng-container>

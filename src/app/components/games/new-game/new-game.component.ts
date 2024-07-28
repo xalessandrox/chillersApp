@@ -4,7 +4,7 @@ import { Player } from "../../../interfaces/Player";
 import { GameFormat } from "../../../enums/GameFormat";
 import { PlayersSorterByPipe } from "../../../pipes/players-sorter-by.pipe";
 import { GameService } from "../../../services/games.service";
-import { NgFor, NgIf } from '@angular/common';
+import { JsonPipe, NgFor, NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-new-game',
@@ -13,7 +13,7 @@ import { NgFor, NgIf } from '@angular/common';
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [PlayersSorterByPipe],
     standalone: true,
-    imports: [NgIf, NgFor]
+  imports : [ NgIf, NgFor, JsonPipe ]
 })
 export class NewGameComponent {
 

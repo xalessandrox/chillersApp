@@ -2,6 +2,7 @@
 
 :root {
   --bg-main: #234;
+  --bg-main-light: #345;
   --bg-secondary: #002;
   --fg-main: #397;
   --fg-secondary: #CCA;
@@ -34,9 +35,8 @@ body {
   //background: url("assets/civ6_background3.png") no-repeat;
   //background-size: auto;
   //background-blend-mode: darken;
-  color: var(--bg-main);
+  color: var(--fg-main);
   overflow: auto;
-  min-height: 10dvh;
   animation: animaBack 5s infinite ease;
 
   .btn-custom {
