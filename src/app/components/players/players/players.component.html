@@ -9,8 +9,8 @@
           <li *ngFor="let player of (state?.appData?.data?.players | playersSorterBy: 'playerPoints');">
             <button class="badge mb-1" (click)="pickPlayer(player)"
                     [disabled]="!player.isAvailable"
-
-                    [ngClass]="{ 'selected' : _playersNextGame.includes(player) && isEditMode }">
+                    [ngStyle]="{'cursor' : player.isAvailable && isEditMode ? 'pointer' : 'initial'}"
+                    [ngClass]="{ 'selected' : playersNextGame.includes(player) && isEditMode }">
               <img src="{{ player.image_url }}" width="20" height="auto" alt="p_img">
               {{ player.nickname }}
               {{ player.playerPoints }}<span *ngIf="!player.isAvailable"><i class="bi bi-play-fill"></i></span>

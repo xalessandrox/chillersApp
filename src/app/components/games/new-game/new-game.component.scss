@@ -1,11 +1,11 @@
 section {
-  color:white;
+  color: white;
   background: var(--bg-main-light);
-  box-shadow: 0px 0px 7px gray, 0px 0px 20px black;
+  box-shadow: 0 0 7px gray, 0 0 20px black;
 }
 
 .next-format {
-  color: #998877;
+  color: #666;
 }
 
 .show-format {
@@ -26,4 +26,20 @@ section {
   background-color: var(--bg-secondary);
   color: var(--fg-secondary);
   border: 1px solid black;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+
+  .players-next-game {
+    display: flex;
+    //flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    width: 100%;
+  }
+
 }

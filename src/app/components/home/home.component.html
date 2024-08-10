@@ -4,27 +4,30 @@
       <h1>natural born chillers</h1>
     </div>
     <div class="row mt-3 content">
-      <div class="col-sm-1 side-menu">
-        <app-side-menu [isEditMode]="isEditMode" (switchEditMode)="switchEditMode($event)"></app-side-menu>
+      <div class="col-lg-1 side-menu">
+        <app-side-menu [isEditMode]="isNewGameMode" (switchEditMode)="switchEditMode($event)"></app-side-menu>
       </div>
 
-      <div class="col-sm-3 players">
-        <app-players #playersComponent [isEditMode]="isEditMode"
-                     (playersNextGameEmitter)="sendPlayersNextGameToNewGame($event)"
-                     [playersNextGame]="playersNextGame">
+      <div class="col-lg-3 col-sm-12 players">
+        <app-players #playersComponent [isEditMode]="isNewGameMode"
+                     (playersNextGameOutput)="sendPlayersNextGameToNewGame($event)"
+                     [playersNextGameInput]="playersNextGame">
         </app-players>
       </div>
 
-      <div class="col-sm-8">
-        <app-games *ngIf="!isEditMode"
-                   [isEditMode]="isEditMode">
+      <div class="col-lg-8 col-sm-12">
+        <app-games *ngIf="!isNewGameMode" #gamesComponent
+                   [isEditMode]="isNewGameMode"
+                   (refreshPlayers)="refreshPlayers()">
         </app-games>
-        <app-new-game *ngIf="isEditMode"
-                      [isEditMode]="isEditMode"
+        <app-new-game *ngIf="isNewGameMode"
+                      [isEditMode]="isNewGameMode"
                       [players]="players"
                       [playersNextGame]="playersNextGame"
-                      (onModeChange)="isEditMode = $event"
-                      (unselectPlayersNextGame)="unselectPlayersNextGame()">
+                      (onModeChange)="switchEditMode($event)"
+                      (unselectPlayersNextGame)="refreshPlayers()"
+                      (refreshGames)="refreshGames()"
+                      (refreshPlayers)="refreshPlayers()">
         </app-new-game>
       </div>
     </div>

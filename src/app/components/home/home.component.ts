@@ -16,17 +16,19 @@ import { SideMenuComponent } from '../side-menu/side-menu.component';
 export class HomeComponent {
 
   @Input() players: Player[];
-  @Input() playersNextGame: Player[];
+  playersNextGame: Player[];
   @ViewChild( 'playersComponent' ) playersComponent: PlayersComponent;
-  isEditMode: boolean = true;
+  @ViewChild( 'gamesComponent' ) gamesComponent: GamesComponent;
+  isNewGameMode: boolean = false;
 
 
   switchEditMode( isEditMode: boolean ) {
-    this.isEditMode = isEditMode;
+    this.isNewGameMode = isEditMode;
   }
 
 
   sendPlayersNextGameToNewGame( players: Player[] ) {
+    console.log("PTNG", players);
     this.playersNextGame = players;
   }
 
@@ -35,4 +37,13 @@ export class HomeComponent {
 
   }
 
+  refreshGames() {
+    this.gamesComponent?.loadData();
+  }
+
+  refreshPlayers() {
+    this.playersNextGame = []; // This one is only needed from NewGameComponent
+    this.playersComponent.loadData();
+    this.playersComponent.changeDetectorRef.detectChanges();
+  }
 }

@@ -11,17 +11,5 @@
 .container-fluid .content {
   flex-grow: 1;
 }
-.container-fluid .content .players {
-  overflow-x: auto !important;
-}
-
-@keyframes animaBack {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
 
 /*# sourceMappingURL=home.component.css.map */

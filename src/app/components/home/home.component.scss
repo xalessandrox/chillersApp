@@ -14,14 +14,11 @@
   .content {
     flex-grow: 1;
 
-
-
     .players {
       //max-height: 100%;
-      overflow-x: auto !important;
+      //overflow-x: auto !important;
       //background: #998877 !important;
     }
-
 
   }
 
@@ -39,12 +36,11 @@
 
 
 
-@keyframes animaBack {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-
-    transform: translateX(100%);
-  }
-}
+//@keyframes animaBack {
+//  from {
+//    transform: translateX(-100%);
+//  }
+//  to {
+//    transform: translateX(100%);
+//  }
+//}

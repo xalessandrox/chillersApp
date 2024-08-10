@@ -9,17 +9,18 @@
            state?.appData?.data?.game?.outcome == 'TEAM1_WINS' ? 'green' :
            state?.appData?.data?.game?.outcome == 'DRAW' ? 'orange' :
            state?.appData?.data?.game?.outcome == 'SCRAP' ? 'gray' : ''}"
-             data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="[game.outcome = Outcome.Team1_Wins]">
+             (click)="openSaveDialog(Outcome.Team1_Wins)">
           <div class="col-sm-5">Team 1
             <span *ngIf="state?.appData?.data?.game?.outcome == 'TEAM1_WINS'">Wins</span>
             <span *ngIf="state?.appData?.data?.game?.outcome == 'DRAW'">DRAW</span>
           </div>
           <div class="col-sm-7">
-            <div class="row" *ngFor="let element of (state?.appData?.data?.team1);  let i = index">
-              <img class="col-sm-1" src="{{  element?.image_url }}" alt="imm" height="20" width="auto"/>
-              <span class="col-sm-2">{{ element?.nickname }}</span>
-              <span class="col-sm-1">{{ element?.playerPoints }}</span>
-              <span class="col-sm-1 badge bg-success" *ngIf="state?.appData?.data?.game?.mvp?.nickname === element.nickname">MVP</span>
+            <div class="row" *ngFor="let player of (state?.appData?.data?.team1);  let i = index">
+              <img class="col-sm-1" src="{{  player?.image_url }}" alt="imm" height="20" width="auto"/>
+              <span class="col-sm-2">{{ player?.nickname }}</span>
+              <span class="col-sm-1">{{ player?.playerPoints }}</span>
+              <span class="col-sm-1 badge bg-success"
+                    *ngIf="state?.appData?.data?.game?.mvp?.nickname === player.nickname">MVP</span>
             </div>
           </div>
         </div>
@@ -29,7 +30,7 @@
            state?.appData?.data?.game?.outcome == 'TEAM2_WINS' ? 'green' :
            state?.appData?.data?.game?.outcome == 'DRAW' ? 'orange' :
            state?.appData?.data?.game?.outcome == 'SCRAP' ? 'gray' : 'tomato'}"
-             data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="[game.outcome = Outcome.Team2_Wins]">
+             (click)="openSaveDialog(Outcome.Team2_Wins)">
           <div class="col-sm-5">Team 2
             <span *ngIf="state?.appData?.data?.game?.outcome == 'TEAM2_WINS'">Wins</span>
             <span *ngIf="state?.appData?.data?.game?.outcome == 'DRAW'">DRAW</span>
@@ -39,17 +40,13 @@
               <img class="col-sm-1" src="{{  element?.image_url }}" alt="imm" height="20" width="auto"/>
               <span class="col-sm-2">{{ element?.nickname }}</span>
               <span class="col-sm-1">{{ element?.playerPoints }}</span>
-              <span class="col-sm-1 badge bg-success" *ngIf="state?.appData?.data?.game?.mvp?.nickname === element.nickname">MVP</span>
+              <span class="col-sm-1 badge bg-success"
+                    *ngIf="state?.appData?.data?.game?.mvp?.nickname === element.nickname">MVP</span>
             </div>
           </div>
         </div>
       </div>
-    <app-game-modal [game]="game" ></app-game-modal>
     </section>
-    <!-- ----------------------------------------------------------------- -->
-    <!--                               MODAL                               -->
-    <!--  --------------        END MODAL         ----------------------   -->
-    <!-- ----------------------------------------------------------------- -->
 
   </ng-container>
 </ng-container>

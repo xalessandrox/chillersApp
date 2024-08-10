@@ -1,3 +1,3 @@
 export enum GameState {
-	Started, Finished
+	STARTED = "STARTED", FINISHED = "FINISHED"
 }

@@ -16,34 +16,55 @@ import { FormsModule } from "@angular/forms";
 import { ToastrModule } from "ngx-toastr";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
-import { GameModalComponent } from './components/modals/game-modal/game-modal.component';
+import { GameDialogComponent } from './components/modals/game-dialog/game-dialog.component';
 import { NewGameComponent } from './components/games/new-game/new-game.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material/dialog";
 
-@NgModule( { declarations: [AppComponent],
-    exports: [],
-    bootstrap: [AppComponent], imports: [BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        NgOptimizedImage,
-        FormsModule,
-        ToastrModule.forRoot({
-            preventDuplicates: true,
-            resetTimeoutOnDuplicate: false,
-            timeOut: 3000,
-            closeButton: true,
-            progressBar: false,
-            progressAnimation: 'increasing',
-            positionClass: 'toast-top-right'
-        }),
-        HomeComponent,
-        PlayersComponent,
-        GamesComponent,
-        PlayersSorterByPipe,
-        GamesSorterByPipe,
-        GameComponent,
-        SideMenuComponent,
-        GameModalComponent,
-        NewGameComponent],
-  providers: [PlayersService, GameService, provideHttpClient(withInterceptorsFromDi())] } )
+@NgModule( {
+  declarations : [ AppComponent ],
+  exports : [],
+  bootstrap : [ AppComponent ], imports : [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    NgOptimizedImage,
+    FormsModule,
+    ToastrModule.forRoot( {
+      preventDuplicates : true,
+      resetTimeoutOnDuplicate : false,
+      timeOut : 3000,
+      closeButton : true,
+      progressBar : false,
+      progressAnimation : 'increasing',
+      positionClass : 'toast-top-right'
+    } ),
+    HomeComponent,
+    PlayersComponent,
+    GamesComponent,
+    PlayersSorterByPipe,
+    GamesSorterByPipe,
+    GameComponent,
+    SideMenuComponent,
+    GameDialogComponent,
+    NewGameComponent ],
+  providers : [
+    PlayersService,
+    GameService,
+    provideHttpClient( withInterceptorsFromDi() ),
+    provideAnimationsAsync(),
+    {
+      provide: MAT_DIALOG_DEFAULT_OPTIONS,
+      useValue: {
+        hasBackdrop: true,
+        width: '50%',
+        minHeight: '25%',
+        maxHeight: '50%',
+        enterAnimationDuration: '250ms',
+        exitAnimationDuration: '125'
+      }
+    }
+  ]
+} )
 export class AppModule {
 }

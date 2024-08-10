@@ -5,42 +5,34 @@
         <span>NEW GAME</span>
       </div>
       <div class="card-body">
-        <div class="row text-center">
-          <div class="col next-format" *ngIf="playersNextGame?.length < 4">
+        <div class="row text-center card-title">
+          <div class="col next-format" [ngClass]="{ 'show-format' : playersNextGame?.length == 4 && isEditMode }">
             {{ GameFormat.FORMAT_2V2 }}
           </div>
-          <div class="col show-format" *ngIf="playersNextGame?.length == 4">
-            {{ GameFormat.FORMAT_2V2 }}
-          </div>
-          <div class="col next-format" *ngIf="playersNextGame?.length > 4 && playersNextGame.length < 6">
+          <div class="col next-format" [ngClass]="{ 'show-format' : playersNextGame?.length == 6 && isEditMode }">
             {{ GameFormat.FORMAT_3V3 }}
           </div>
-          <div class="col show-format" *ngIf="playersNextGame?.length == 6">
-            {{ GameFormat.FORMAT_3V3 }}
-          </div>
-          <div class="col next-format" *ngIf="playersNextGame?.length > 6 && playersNextGame.length < 8">
+          <div class="col next-format" [ngClass]="{ 'show-format' : playersNextGame?.length == 8 && isEditMode }">
             {{ GameFormat.FORMAT_4V4 }}
           </div>
-          <div class="col show-format" *ngIf="playersNextGame?.length == 8">
-            {{ GameFormat.FORMAT_4V4 }}
-          </div>
-          <div class="col next-format" *ngIf="playersNextGame?.length > 8 && playersNextGame.length < 10">
-            {{ GameFormat.FORMAT_5V5 }}
-          </div>
-          <div class="col show-format" *ngIf="playersNextGame?.length == 10">
+          <div class="col next-format" [ngClass]="{ 'show-format' : playersNextGame?.length == 10 && isEditMode }">
             {{ GameFormat.FORMAT_5V5 }}
           </div>
         </div>
 
-        <div class="row" style="background-color: #167">
+        <div *ngIf="areTeamsMade" class="card p-2" style="background-color: #167">
+          <div class="col-sm-12 text-center">Double check the teams</div>
+          <div class="col-sm-12 text-center">Then press the GO button to start the game</div>
+        </div>
+        <div *ngIf="!areTeamsMade" class="card p-2" style="background-color: #167">
           <div class="col-sm-12 text-center">Pick available players from the list to form the new game</div>
           <div class="col-sm-12 text-center">When you are ready click on the Make Teams button</div>
         </div>
 
-        <div class="row" *ngIf="!areTeamsMade && playersNextGame?.length > 0">
-          <div class="row" *ngFor="let player of playersNextGame">
-            <div class="col badge mb-1">{{ player?.nickname }}</div>
-          </div>
+        <div class="players-next-game" *ngIf="!areTeamsMade && playersNextGame?.length > 0">
+          <span *ngFor="let player of playersNextGame">
+            <span class="badge mb-1">{{ player?.nickname }}</span>
+          </span>
         </div>
 
         <div class="row text-center" *ngIf="areTeamsMade">
@@ -54,11 +46,12 @@
             <p *ngIf="i >= playersNextGame.length / 2">{{ player.nickname }}</p>
           </div>
         </div>
-        <div class="row d-flex mt-auto p-5" *ngIf="isEditMode">
-          <button [disabled]="!playersNextGame || playersNextGame?.length == 0" class="btn btn-custom btn-reset-teams" (click)="resetTeams()">Reset</button>
-          <button class="btn btn-custom btn-make-teams" (click)="makeTeams()"
-                  *ngIf="!gameCanStart && playersNextGame?.length > 0"
-                  [disabled]="playersNextGame.length < 4 || playersNextGame.length % 2 == 1">Make Teams
+        <div class="row d-flex mt-auto p-5">
+          <button [disabled]="!playersNextGame || playersNextGame?.length == 0" class="btn btn-custom btn-reset-teams"
+                  (click)="resetTeams()">Reset
+          </button>
+          <button *ngIf="!areTeamsMade" class="btn btn-custom btn-make-teams" (click)="makeTeams()"
+                  [disabled]="playersNextGame?.length < 4 || playersNextGame?.length % 2 == 1">Make Teams
           </button>
           <button class="btn btn-custom btn-reset-teams" *ngIf="gameCanStart" (click)="createGame()">GO!</button>
         </div>
