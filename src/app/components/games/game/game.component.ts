@@ -18,7 +18,7 @@ import { ToastrService } from "ngx-toastr";
     templateUrl: './game.component.html',
     styleUrl: './game.component.scss',
     standalone: true,
-    imports: [NgIf, NgSwitch, NgSwitchCase, NgClass, NgStyle, NgFor, GameDialogComponent, AsyncPipe],
+  imports:[ NgIf, NgSwitch, NgSwitchCase, NgClass, NgStyle, NgFor, GameDialogComponent, AsyncPipe ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} }
   ]

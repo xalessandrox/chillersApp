@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import { Game } from "../../../interfaces/Game";
 import { Player } from "../../../interfaces/Player";
 import { GameFormat } from "../../../enums/GameFormat";
@@ -6,6 +14,7 @@ import { PlayersSorterByPipe } from "../../../pipes/players-sorter-by.pipe";
 import { GameService } from "../../../services/games.service";
 import { JsonPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { ToastrService } from "ngx-toastr";
+import { MatIcon } from "@angular/material/icon";
 
 @Component( {
   selector : 'app-new-game',
@@ -14,9 +23,9 @@ import { ToastrService } from "ngx-toastr";
   changeDetection : ChangeDetectionStrategy.OnPush,
   providers : [ PlayersSorterByPipe ],
   standalone : true,
-  imports : [ NgIf, NgFor, JsonPipe, NgClass ]
+  imports:[ NgIf, NgFor, JsonPipe, NgClass, PlayersSorterByPipe, MatIcon ]
 } )
-export class NewGameComponent {
+export class NewGameComponent implements OnChanges {
 
   @Input() isEditMode!: boolean;
   @Input() players!: Player[];
@@ -27,24 +36,29 @@ export class NewGameComponent {
   @Output() refreshPlayers: EventEmitter<void> = new EventEmitter<void>();
 
   game: Game = { "id" : null, team1 : null, team2 : null, mvp : null, gameFormat : null };
-  areTeamsMade: boolean;
-  gameCanStart: boolean;
+  areTeamsFormed: boolean;
   protected readonly GameFormat = GameFormat;
 
   constructor( private sorter: PlayersSorterByPipe, private gameService: GameService, private toastrService: ToastrService ) {
   }
 
+  get playersOfNextGame() {
+    return this.sorter.transform(this.playersNextGame, 'forNewGame');
+  }
+
+  get canGameStart() {
+    return this.playersNextGame?.length > 3 && this.playersNextGame?.length % 2 == 0;
+  }
+
   resetTeams() {
     this.unselectPlayersNextGame.emit();
     this.playersNextGame = [];
-    this.areTeamsMade = false;
-    this.gameCanStart = false;
+    this.areTeamsFormed = false;
   }
 
   makeTeams() {
     this.playersNextGame = this.sorter.transform( this.playersNextGame, 'forNewGame' );
-    this.gameCanStart = true;
-    this.areTeamsMade = true;
+    this.areTeamsFormed = true;
   }
 
   createGame() {
@@ -81,6 +95,11 @@ export class NewGameComponent {
       default:
         return null;
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    // console.log(changes?.['playersNextGame']);
+    // console.log(this.playersNextGame);
   }
 
 }

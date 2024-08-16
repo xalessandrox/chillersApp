@@ -31,5 +31,37 @@ section {
   gap: 0.3rem;
   width: 100%;
 }
+.card-body .teams {
+  border-radius: 10px;
+}
+.card-body .team-one-style {
+  background-color: #213277;
+}
+.card-body .team-two-style {
+  background-color: #327721;
+}
+.card-body .footer {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.card-body .footer .with-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  gap: 0.2rem;
+}
+@media screen and (max-width: 576px) {
+  .card-body .footer {
+    gap: 0.2rem;
+    flex-direction: column;
+  }
+  .card-body .footer .with-icon {
+    width: 100%;
+  }
+}
 
 /*# sourceMappingURL=new-game.component.css.map */

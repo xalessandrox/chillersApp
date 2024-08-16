@@ -1,21 +1,12 @@
-.wrapper.row {
-  background-color: black;
-}
-
 .wrapper {
   padding-block: 10px;
-  border: #fcf3e1 1px solid;
   border-radius: 10px;
-}
-
-.container-fluid {
-  //background-color: #cdc98b;
-  //background-color: black;
-
+  background-color: #123;
+  opacity: 0.6;
 }
 
 .select-winner * {
-  color: red;
+  color: whitesmoke;
 
   &:hover {
     background-color: green;
@@ -25,6 +16,7 @@
 .togglePointerEvent {
   pointer-events: none;
 }
+
 .row {
   padding-block: 0.2em;
 }

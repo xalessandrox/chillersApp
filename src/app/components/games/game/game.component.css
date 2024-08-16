@@ -1,15 +1,12 @@
-.wrapper.row {
-  background-color: black;
-}
-
 .wrapper {
   padding-block: 10px;
-  border: #fcf3e1 1px solid;
   border-radius: 10px;
+  background-color: #123;
+  opacity: 0.6;
 }
 
 .select-winner * {
-  color: red;
+  color: whitesmoke;
 }
 .select-winner *:hover {
   background-color: green;

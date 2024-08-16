@@ -8,29 +8,35 @@ section i {
   padding-left: 0.5rem;
   color: hsla(30deg, 30%, 30%, 0.4);
 }
-section ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 0.1rem;
-  padding: 0 !important;
-  padding-left: 1rem !important;
-  margin: 0 !important;
+section ul li {
+  margin-bottom: 0.2rem;
+  width: 100%;
 }
 section ul .badge {
   font-size: 0.8rem !important;
   background-color: var(--bg-main);
   color: var(--fg-secondary);
-  margin-left: 0.5rem;
+  padding: 0.5rem;
   border: 1px solid transparent;
+  width: 100%;
+}
+section ul .badge .with-icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+section ul .badge .with-icon .left-group {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  gap: 1rem;
 }
 section ul .selected {
   color: yellowgreen;
+  border: 1px solid yellow;
 }
-section ul li.list-group-item {
-  background: hsla(50deg, 100%, 50%, 0.2);
-  width: 100%;
+section ul .can-pick {
+  box-shadow: 0px 0px 3px gray, 0px 0px 6px #445566;
 }
 
 /*# sourceMappingURL=players.component.css.map */

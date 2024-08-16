@@ -5,6 +5,7 @@ import { GamesComponent } from '../games/games/games.component';
 import { NgIf } from '@angular/common';
 import { PlayersComponent } from '../players/players/players.component';
 import { SideMenuComponent } from '../side-menu/side-menu.component';
+import { environment } from "../../../environments/environment.development";
 
 @Component( {
   selector : 'app-home',
@@ -28,7 +29,6 @@ export class HomeComponent {
 
 
   sendPlayersNextGameToNewGame( players: Player[] ) {
-    console.log("PTNG", players);
     this.playersNextGame = players;
   }
 
@@ -46,4 +46,6 @@ export class HomeComponent {
     this.playersComponent.loadData();
     this.playersComponent.changeDetectorRef.detectChanges();
   }
+
+  protected readonly environment = environment;
 }

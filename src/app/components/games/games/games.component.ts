@@ -16,6 +16,12 @@ import { AsyncPipe, DatePipe, NgClass, NgFor, NgIf, NgSwitch, NgSwitchCase } fro
 import { GameState } from "../../../enums/GameState";
 import { MatDialog } from "@angular/material/dialog";
 import { GameDialogComponent } from "../../modals/game-dialog/game-dialog.component";
+import {
+  MatAccordion,
+  MatExpansionPanel,
+  MatExpansionPanelHeader,
+  MatExpansionPanelTitle
+} from "@angular/material/expansion";
 
 
 @Component( {
@@ -23,7 +29,7 @@ import { GameDialogComponent } from "../../modals/game-dialog/game-dialog.compon
   templateUrl : './games.component.html',
   styleUrl : './games.component.scss',
   standalone : true,
-  imports : [ NgIf, NgSwitch, NgSwitchCase, NgFor, NgClass, FormsModule, GameComponent, AsyncPipe, DatePipe, GamesSorterByPipe ]
+  imports:[ NgIf, NgSwitch, NgSwitchCase, NgFor, NgClass, FormsModule, GameComponent, AsyncPipe, DatePipe, GamesSorterByPipe, MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle ]
 } )
 
 export class GamesComponent implements OnInit {

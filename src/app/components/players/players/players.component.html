@@ -5,15 +5,23 @@
         <span>PLAYERS</span>
       </div>
       <div class="card-body">
-        <ul >
-          <li *ngFor="let player of (state?.appData?.data?.players | playersSorterBy: 'playerPoints');">
+        <ul class="list-group-item">
+          <li *ngFor="let player of (state?.appData?.data?.players | playersSorterBy: 'playerPoints');"
+              class="list-item">
             <button class="badge mb-1" (click)="pickPlayer(player)"
                     [disabled]="!player.isAvailable"
                     [ngStyle]="{'cursor' : player.isAvailable && isEditMode ? 'pointer' : 'initial'}"
-                    [ngClass]="{ 'selected' : playersNextGame.includes(player) && isEditMode }">
-              <img src="{{ player.image_url }}" width="20" height="auto" alt="p_img">
-              {{ player.nickname }}
-              {{ player.playerPoints }}<span *ngIf="!player.isAvailable"><i class="bi bi-play-fill"></i></span>
+                    [ngClass]="{ 'selected' : playersNextGame.includes(player) && isEditMode, 'can-pick': player.isAvailable && isEditMode }">
+              <div class="with-icon">
+                <div class="left-group">
+                  <img src="{{ player.image_url }}" width="20" height="auto" alt="p_img">
+                  <span>{{ player.nickname }}</span>
+                  <span>{{ player.playerPoints }}</span>
+                </div>
+                <div class="icon">
+                  <span [ngStyle]="{'opacity': player.isAvailable ? '0' : '1'}"><i class="bi bi-play-fill"></i></span>
+                </div>
+              </div>
             </button>
           </li>
         </ul>

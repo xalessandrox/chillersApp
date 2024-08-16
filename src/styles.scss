@@ -111,12 +111,12 @@ body {
     }
 
     &.btn-reset-teams {
-      border: darkolivegreen 1px solid;
+      border: darkred 1px solid;
 
       &:hover {
-        color: darkolivegreen;
-        border-color: olivedrab;
-        box-shadow: 1px 1px 200px darkolivegreen;
+        color: palevioletred;
+        border-color: orangered;
+        box-shadow: 1px 1px 200px darkred;
       }
 
       &:active {
@@ -130,7 +130,7 @@ body {
 
       &:hover {
         color: darkcyan;
-        border-color: cyan;
+        border-color: #223344;
         box-shadow: 1px 1px 200px darkcyan;
       }
 
@@ -139,8 +139,6 @@ body {
 
       }
     }
-
-
 
   }
 }

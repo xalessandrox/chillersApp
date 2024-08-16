@@ -20,40 +20,47 @@
           </div>
         </div>
 
-        <div *ngIf="areTeamsMade" class="card p-2" style="background-color: #167">
-          <div class="col-sm-12 text-center">Double check the teams</div>
-          <div class="col-sm-12 text-center">Then press the GO button to start the game</div>
-        </div>
-        <div *ngIf="!areTeamsMade" class="card p-2" style="background-color: #167">
+        <!-- Text Info -->
+        <div class="card p-2" style="background-color: #167">
           <div class="col-sm-12 text-center">Pick available players from the list to form the new game</div>
-          <div class="col-sm-12 text-center">When you are ready click on the Make Teams button</div>
+          <div class="col-sm-12 text-center">When you are ready click on the GO! button</div>
         </div>
 
-        <div class="players-next-game" *ngIf="!areTeamsMade && playersNextGame?.length > 0">
-          <span *ngFor="let player of playersNextGame">
-            <span class="badge mb-1">{{ player?.nickname }}</span>
-          </span>
-        </div>
-
-        <div class="row text-center" *ngIf="areTeamsMade">
-          <h3 style="font-size: 1.2rem">Team 1</h3>
-          <div class="col-sm-12" *ngFor="let player of playersNextGame; let i = index">
-            <p *ngIf="i < playersNextGame.length / 2">{{ player.nickname }}</p>
+        <!-- List of teams -->
+        <div class="row text-center mt-2 teams">
+          <div class="col-lg-6 col-sm-12 team-one-style">
+            <h3 class="card-header">Team 1</h3>
+            <div class="card-body">
+              <div *ngFor="let player of playersOfNextGame; let i = index">
+                <p *ngIf="i < playersNextGame.length / 2">{{ player?.nickname }}</p>
+              </div>
+            </div>
           </div>
-          <h3 style="font-size: 1.2rem">Team 2</h3>
-
-          <div class="col-sm-12" *ngFor="let player of playersNextGame; let i = index">
-            <p *ngIf="i >= playersNextGame.length / 2">{{ player.nickname }}</p>
+          <div class="col-lg-6 col-sm-12 team team-two-style">
+            <h3 class="card-header">Team 2</h3>
+            <div class="card-body">
+              <div *ngFor="let player of playersOfNextGame; let i = index">
+                <p *ngIf="i >= playersNextGame.length / 2">{{ player?.nickname }}</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="row d-flex mt-auto p-5">
-          <button [disabled]="!playersNextGame || playersNextGame?.length == 0" class="btn btn-custom btn-reset-teams"
-                  (click)="resetTeams()">Reset
+        <!-- Action Buttons -->
+        <div class="footer row mt-3">
+          <button [disabled]="!playersNextGame || playersNextGame?.length == 0" class="col-sm-6 btn btn-custom btn-reset-teams with-icon" (click)="resetTeams()">
+            <mat-icon class="mat-icon">restart_alt</mat-icon>
+            <span>Reset</span>
           </button>
-          <button *ngIf="!areTeamsMade" class="btn btn-custom btn-make-teams" (click)="makeTeams()"
-                  [disabled]="playersNextGame?.length < 4 || playersNextGame?.length % 2 == 1">Make Teams
+
+          <button class="col-sm-6 btn btn-custom btn-make-teams with-icon" [disabled]="!canGameStart" (click)="createGame()">
+            <mat-icon *ngIf="canGameStart" class="mat-icon" style="transform: rotateZ(-25deg); ">sports_score</mat-icon>
+            <mat-icon *ngIf="canGameStart" class="mat-icon" style="transform: rotateZ(-15deg); ">sports_score</mat-icon>
+            <mat-icon class="mat-icon" style="transform: rotateZ(15deg); ">sports_score</mat-icon>
+            GO
+            <mat-icon class="mat-icon" style="transform: rotateZ(15deg)">sports_score</mat-icon>
+            <mat-icon *ngIf="canGameStart" class="mat-icon" style="transform: rotateZ(15deg)">sports_score</mat-icon>
+            <mat-icon *ngIf="canGameStart" class="mat-icon" style="transform: rotateZ(25deg)">sports_score</mat-icon>
           </button>
-          <button class="btn btn-custom btn-reset-teams" *ngIf="gameCanStart" (click)="createGame()">GO!</button>
         </div>
       </div>
 

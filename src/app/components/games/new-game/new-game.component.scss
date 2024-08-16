@@ -36,10 +36,48 @@ section {
 
   .players-next-game {
     display: flex;
-    //flex-direction: column;
     align-items: center;
     gap: 0.3rem;
     width: 100%;
+  }
+
+  .teams {
+    border-radius: 10px;
+  }
+
+  .team-one-style {
+    background-color: #213277;
+  }
+
+  .team-two-style {
+    background-color: #327721;
+  }
+
+  .footer {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    .with-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 45%;
+      gap: 0.2rem;
+    }
+  }
+
+  @media  screen and (max-width: 576px) {
+    .footer {
+      gap: 0.2rem;
+      flex-direction: column;
+      .with-icon {
+        width: 100%;
+      }
+    }
+
   }
 
 }

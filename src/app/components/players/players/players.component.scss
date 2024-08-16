@@ -1,44 +1,60 @@
 section {
-  color:white;
+  color: white;
   background: var(--bg-main-light);
   box-shadow: 0 0 7px gray, 0 0 20px black;
-  height:99%;
+  height: 99%;
 
-  i  {
+  i {
     padding-left: 0.5rem;
     color: hsla(30, 30%, 30%, 0.4);
   }
 
   ul {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 0.1rem;
-    padding: 0 !important;
-    padding-left: 1rem !important;
-    margin: 0 !important;
+
+    li {
+      margin-bottom: 0.2rem;
+      width: 100%;
+    }
 
     .badge {
       font-size: 0.8rem !important;
       background-color: var(--bg-main);
       color: var(--fg-secondary);
-      margin-left: 0.5rem;
+      padding: 0.5rem;
       border: 1px solid transparent;
+      width: 100%;
+
+      .with-icon {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .left-group {
+          display: flex;
+          justify-content: space-around;
+          align-items: baseline;
+          gap: 1rem;
+        }
+
+      }
+
+      //&:has(.can-pick) {
+      //  width: 50%;
+      //  background: transparent;
+      //  font-size: 60px;
+      //}
     }
 
     .selected {
       color: yellowgreen;
+      border: 1px solid yellow;
     }
 
-    li.list-group-item {
-      background: hsla(50, 120%, 50% , 0.2);
-      width: 100%;
+    .can-pick {
+      box-shadow: 0px 0px 3px gray, 0px 0px 6px #445566;
     }
-
 
   }
 
-
-
 }
+

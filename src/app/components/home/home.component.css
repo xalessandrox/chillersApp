@@ -3,7 +3,7 @@
 }
 .container-fluid .header {
   background: var(--bg-secondary);
-  height: 6rem;
+  line-height: 6rem;
 }
 .container-fluid .header h1 {
   font-weight: bold;
