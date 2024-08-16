@@ -30,7 +30,7 @@ import { AsyncPipe, JsonPipe, NgClass, NgFor, NgIf, NgStyle, NgSwitch, NgSwitchC
 export class PlayersComponent implements OnInit {
 
   playersState$: Observable<AppState<CustomHttpResponse<Player>>>;
-  dataSubject = new BehaviorSubject<CustomHttpResponse<Player[] & Game>>(null);
+  dataSubject = new BehaviorSubject<CustomHttpResponse<Player & Game>>(null);
   playersNotAvailable: Player[] = [];
   playersOfNextGame: Player[] = [];
   @Input() isEditMode: boolean;
@@ -97,9 +97,9 @@ export class PlayersComponent implements OnInit {
         a.team1.forEach(pl => this.playersNotAvailable.push(pl));
         a.team2.forEach(pl => this.playersNotAvailable.push(pl));
       });
-      // Assigns available value by comparing
-      Object.values(allPlayers).forEach((p) => {
-        p.isAvailable = this.isAvailable(p);
+      // Assigns availability by calling predicate
+      Object.values(allPlayers).forEach((player) => {
+        player.isAvailable = this.isAvailable(player);
       });
     } else {
       this.toastr.error("Could not fetch players");

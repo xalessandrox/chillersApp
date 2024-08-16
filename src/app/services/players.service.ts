@@ -15,11 +15,11 @@ export class PlayersService {
 	}
 
 
-	players$ = () => <Observable<CustomHttpResponse<Player[] & Game>>>
+	players$ = () => <Observable<CustomHttpResponse<Player & Game>>>
 		this.httpClient.get<CustomHttpResponse<Player>>
 		( `${ environment.baseUrl }:${ environment.serverPort }/players/all` )
 		.pipe(
-			tap( () => console.log() ),
+			tap( () => console.log(`CALLING ${ environment.baseUrl }:${ environment.serverPort }`) ),
 			catchError( this.handleError )
 		)
 
