@@ -1,8 +1,16 @@
-.form {
+.form-fields {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.form-fields mat-form-field {
+  width: 75%;
+}
+
+.dialog-close {
+  float: right;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=add-player-dialog.component.css.map */

@@ -12,22 +12,22 @@ import { GameService } from "./services/games.service";
 import { GameComponent } from './components/games/game/game.component';
 import { NgOptimizedImage } from "@angular/common";
 import { GamesSorterByPipe } from "./pipes/games-sorter-by.pipe";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ToastrModule } from "ngx-toastr";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
-import { GameDialogComponent } from './components/modals/game-dialog/game-dialog.component';
 import { NewGameComponent } from './components/games/new-game/new-game.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {
   MAT_DIALOG_DEFAULT_OPTIONS,
-  MatDialogActions,
+  MatDialogActions, MatDialogClose,
   MatDialogContent,
   MatDialogTitle
 } from "@angular/material/dialog";
 import { AddPlayerDialogComponent } from './components/side-menu/dialog/add-player-dialog/add-player-dialog.component';
-import { MatFormField, MatLabel } from "@angular/material/form-field";
+import { MatError, MatFormField, MatLabel } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
+import { GameDialogComponent } from "./components/games/game/dialog/game-dialog.component";
 
 @NgModule( {
   declarations : [ AppComponent, AddPlayerDialogComponent ],
@@ -45,7 +45,7 @@ import { MatInput } from "@angular/material/input";
       closeButton:true,
       progressBar:false,
       progressAnimation:'increasing',
-      positionClass:'toast-top-right'
+      positionClass:'toast-bottom-right'
     }),
     HomeComponent,
     PlayersComponent,
@@ -61,7 +61,10 @@ import { MatInput } from "@angular/material/input";
     MatDialogTitle,
     MatFormField,
     MatLabel,
-    MatInput
+    MatInput,
+    MatDialogClose,
+    ReactiveFormsModule,
+    MatError
   ],
   providers : [
     PlayersService,
@@ -72,7 +75,7 @@ import { MatInput } from "@angular/material/input";
       provide: MAT_DIALOG_DEFAULT_OPTIONS,
       useValue: {
         hasBackdrop: true,
-        width: '50%',
+        width: '65%',
         minHeight: '25%',
         maxHeight: '50%',
         enterAnimationDuration: '250ms',

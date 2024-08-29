@@ -24,14 +24,18 @@ section {
   gap: 0.3rem;
   width: 100%;
 }
-.card-body .teams {
-  border-radius: 10px;
+.card-body #formed-teams {
+  gap: 0.2rem;
 }
-.card-body .team-one-style {
-  background-color: rgba(255, 255, 255, 0.4);
+.card-body #formed-teams .team-one-style {
+  border-radius: 10px !important;
+  background-color: rgb(171, 2, 2);
+  flex: 1 1;
 }
-.card-body .team-two-style {
-  background-color: #238;
+.card-body #formed-teams .team-two-style {
+  border-radius: 10px !important;
+  background-color: #1d2d80;
+  flex: 1 1;
 }
 .card-body .footer {
   flex-wrap: wrap;
@@ -55,6 +59,29 @@ section {
   .card-body .footer .with-icon {
     width: 100%;
   }
+}
+
+.screenshot {
+  width: 300px;
+  color: #112233;
+  background-color: transparent;
+  font-family: Bahnschrift, serif;
+  font-size: 1.2rem;
+}
+.screenshot .team-one-style {
+  background: #fcf7e7;
+  color: #998877;
+  border-radius: 5px;
+  flex: 1 1;
+  margin-right: 3px;
+  padding-top: 3px;
+}
+.screenshot .team-two-style {
+  background: #998877;
+  color: #fcf7e7;
+  border-radius: 5px;
+  flex: 1 1;
+  padding-top: 3px;
 }
 
 /*# sourceMappingURL=new-game.component.css.map */

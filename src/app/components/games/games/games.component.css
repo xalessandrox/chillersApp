@@ -3,23 +3,20 @@ section {
   background: var(--bg-main-light);
   box-shadow: 0px 0px 7px gray, 0px 0px 20px black;
 }
-
-.odd {
+section .odd {
   color: var(--fg-row-odd);
   background-color: var(--bg-row-odd);
 }
-
-.even {
+section .even {
   color: var(--fg-row-even);
   background-color: var(--bg-row-even);
 }
-
-.row {
+section .header {
   padding-block: 0.7em;
+  margin-bottom: 0.125rem;
 }
-
-.hide {
-  display: none;
+section .expansion-panels {
+  margin-bottom: 0.125rem;
 }
 
 /*# sourceMappingURL=games.component.css.map */

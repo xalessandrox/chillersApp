@@ -1,11 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Game } from "../../../interfaces/Game";
-import { Outcome } from "../../../enums/Outcome";
-import { Player } from "../../../interfaces/Player";
-import { GameService } from "../../../services/games.service";
+import { Game } from "../../../../interfaces/Game";
+import { Outcome } from "../../../../enums/Outcome";
+import { Player } from "../../../../interfaces/Player";
+import { GameService } from "../../../../services/games.service";
 import { ToastrService } from "ngx-toastr";
 import { FormsModule } from '@angular/forms';
-import { JsonPipe, NgFor, NgIf } from '@angular/common';
+import { JsonPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import {
   MAT_DIALOG_DATA,
   MatDialogActions,
@@ -15,11 +15,11 @@ import {
 } from "@angular/material/dialog";
 
 @Component( {
-  selector : 'app-game-dialog',
+  selector : 'app-dialog',
   templateUrl : './game-dialog.component.html',
   styleUrl : './game-dialog.component.scss',
   standalone : true,
-  imports : [ NgIf, NgFor, FormsModule, JsonPipe, MatDialogContent, MatDialogTitle, MatDialogActions, MatDialogClose ]
+  imports:[ NgIf, NgFor, FormsModule, JsonPipe, MatDialogContent, MatDialogTitle, MatDialogActions, MatDialogClose, NgClass ]
 } )
 export class GameDialogComponent implements OnInit {
   game: Game;

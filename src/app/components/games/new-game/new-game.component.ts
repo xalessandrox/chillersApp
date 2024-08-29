@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Game } from "../../../interfaces/Game";
 import { Player } from "../../../interfaces/Player";
 import { GameFormat } from "../../../enums/GameFormat";
@@ -26,7 +18,7 @@ import html2canvas from "html2canvas";
   standalone:true,
   imports:[ NgIf, NgFor, JsonPipe, NgClass, PlayersSorterByPipe, MatIcon ]
 })
-export class NewGameComponent implements OnChanges {
+export class NewGameComponent {
 
   @Input() isEditMode!: boolean;
   @Input() players!: Player[];
@@ -59,7 +51,8 @@ export class NewGameComponent implements OnChanges {
 
   createGame() {
     this.duplicateToCanvas();
-    return;
+    // this.toastrService.success("", "Teams copied in the clipboard");
+    // return;
     const numberOfPlayers = this.playersNextGame.length;
     const team1 = this.playersNextGame.slice(0, numberOfPlayers / 2);
     const team2 = this.playersNextGame.slice(numberOfPlayers / 2);
@@ -71,7 +64,8 @@ export class NewGameComponent implements OnChanges {
         this.playersNextGame = [];
         this.refreshGames.emit();
         this.refreshPlayers.emit();
-        this.toastrService.success("", "Game successfully created");
+        this.onModeChange.emit(false);
+        this.toastrService.success("", "Teams copied in the clipboard");
       },
       error:(err) => {
         this.toastrService.error("Error", `Something wrong happened: ${ err.message }`)
@@ -82,18 +76,19 @@ export class NewGameComponent implements OnChanges {
 
   duplicateToCanvas() {
 
-    html2canvas(document.querySelector('#formed-teams')).then(canvas => {
+    const clonedElement =   document.querySelector('#formed-teams').cloneNode(true) as HTMLElement;
+    clonedElement.classList.add('screenshot')
+    document.body.appendChild(clonedElement);
 
-      const url = canvas.toDataURL();
-      const img = new Image();
+    html2canvas(document.querySelector('.screenshot')).then(canvas => {
+
       const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
-      canvas.toBlob(function (blob) {
 
+      canvas.toBlob(function (blob) {
         ctx.drawImage(canvas, 0, 0);
         const clipboardItemInput = new ClipboardItem({ 'image/png':blob });
         navigator.clipboard.write([ clipboardItemInput ]).then();
-
-
+        document.body.removeChild(clonedElement);
       });
     });
 
@@ -112,11 +107,6 @@ export class NewGameComponent implements OnChanges {
       default:
         return null;
     }
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    // console.log(changes?.['playersNextGame']);
-    // console.log(this.playersNextGame);
   }
 
 }

@@ -1,6 +1,17 @@
-.form {
+
+
+.form-fields {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  mat-form-field {
+    width: 75%;
+  }
+
+}
+
+.dialog-close {
+  float: right;
+  font-weight: bold;
 }

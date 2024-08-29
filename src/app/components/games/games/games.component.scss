@@ -2,23 +2,25 @@ section {
   color:white;
   background: var(--bg-main-light);
   box-shadow: 0px 0px 7px gray, 0px 0px 20px black;
-}
-.odd {
-  color: var(--fg-row-odd);
-  background-color: var(--bg-row-odd);
-}
 
-.even {
-  color: var(--fg-row-even);
-  background-color: var(--bg-row-even);
-}
+  .odd {
+    color: var(--fg-row-odd);
+    background-color: var(--bg-row-odd);
+  }
 
-.row {
-  padding-block: 0.7em;
-}
+  .even {
+    color: var(--fg-row-even);
+    background-color: var(--bg-row-even);
+  }
 
-.hide {
-  display: none;
-}
+  .header {
+    padding-block: 0.7em;
+    margin-bottom: 0.125rem;
+  }
 
+  .expansion-panels {
+    margin-bottom: 0.125rem;
+  }
+
+}
 

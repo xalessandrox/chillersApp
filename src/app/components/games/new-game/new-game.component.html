@@ -2,7 +2,7 @@
   <ng-container>
     <section class="card">
       <div class="card-header text-center">
-        <span>NEW GAME</span>
+        <span>MAKE TEAMS</span>
       </div>
       <div class="card-body">
         <div class="row text-center card-title">
@@ -24,7 +24,7 @@
         <div class="row text-center mt-2 teams" id="formed-teams">
           <div class="col-lg-6 col-sm-12 team-one-style">
             <h3 class="card-header">Team 1</h3>
-            <div class="card-body">
+            <div class="card-body pt-3">
               <div *ngFor="let player of playersOfNextGame; let i = index">
                 <p *ngIf="i < playersNextGame.length / 2">{{ player?.nickname }}</p>
               </div>
@@ -32,9 +32,9 @@
           </div>
           <div class="col-lg-6 col-sm-12 team team-two-style">
             <h3 class="card-header">Team 2</h3>
-            <div class="card-body">
+            <div class="card-body pt-3">
               <div *ngFor="let player of playersOfNextGame; let i = index">
-                <p *ngIf="i >= playersNextGame.length / 2">{{ player?.nickname }}</p>
+                <p *ngIf="i >= playersNextGame.length / 2">{{ player?.nickname }} </p>
               </div>
             </div>
           </div>
@@ -46,16 +46,9 @@
             <span>Reset</span>
           </button>
 
-          <button class="col-sm-6 btn btn-custom btn-make-teams with-icon"
-                  [disabled]="false"
-                  (click)="createGame()">
-            <mat-icon *ngIf="canGameStart" class="mat-icon" style="transform: rotateZ(-25deg); ">sports_score</mat-icon>
-            <mat-icon *ngIf="canGameStart" class="mat-icon" style="transform: rotateZ(-15deg); ">sports_score</mat-icon>
-            <mat-icon class="mat-icon" style="transform: rotateZ(15deg); ">sports_score</mat-icon>
-            SCREENSHOT and SAVE
-            <mat-icon class="mat-icon" style="transform: rotateZ(15deg)">sports_score</mat-icon>
-            <mat-icon *ngIf="canGameStart" class="mat-icon" style="transform: rotateZ(15deg)">sports_score</mat-icon>
-            <mat-icon *ngIf="canGameStart" class="mat-icon" style="transform: rotateZ(25deg)">sports_score</mat-icon>
+          <button class="col-sm-6 btn btn-custom btn-make-teams with-icon" [disabled]="!canGameStart" (click)="createGame()">
+            <mat-icon *ngIf="canGameStart" class="mat-icon" style="transform: rotateZ(-15deg);">photo_camera</mat-icon>
+            <span>Screenshot</span>
           </button>
         </div>
       </div>

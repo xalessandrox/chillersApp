@@ -1,21 +1,26 @@
 <ng-container>
-  <mat-dialog-content tabindex="-1" aria-labelledby="gameModalLabel" aria-hidden="true">
-    <div mat-dialog-title>
-      New player
+  <mat-dialog-content tabindex="-1" aria-labelledby="gameModalLabel" aria-hidden="true" class="dialog">
+    <div mat-dialog-title> New player
+      <span class="dialog-close" mat-dialog-close>x</span>
     </div>
-    <div class="form">
-      <mat-form-field>
-        <mat-label>Nickname</mat-label>
-        <input matInput #nickname>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Points (default=500)</mat-label>
-        <input matInput value="500" placeholder="500" #points>
-      </mat-form-field>
-    </div>
-    <mat-dialog-actions>
-      <button class="btn btn-success" (click)="createPlayer(nickname, points)">Confirm</button>
-    </mat-dialog-actions>
+    <form class="form" [formGroup]="form" (ngSubmit)="createPlayer()">
+      <div class="form-fields">
+        <mat-form-field appearance="outline">
+          <mat-label>Nickname</mat-label>
+          <input matInput [formControl]="nicknameFormControl" id="nickname">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Points (default=500)</mat-label>
+          <input matInput [formControl]="pointsFormControl" id="points">
+        </mat-form-field>
+      </div>
+      <div class="form-actions">
+        <mat-dialog-actions>
+          <button class="btn btn-warning mx-2" mat-dialog-close>Cancel</button>
+          <button class="btn btn-success" type="submit">Create</button>
+        </mat-dialog-actions>
+      </div>
+    </form>
   </mat-dialog-content>
 </ng-container>
 

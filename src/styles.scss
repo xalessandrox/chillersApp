@@ -46,7 +46,7 @@ $chillersApp-theme: mat.define-theme((
   --fg-row-odd: #222;
   --bg-row-odd: #987;
   --fg-row-even: #222;
-  --bg-row-even: #389;
+  --bg-row-even: #167;
 }
 
 * {
@@ -155,4 +155,8 @@ section {
   color: white;
   background: var(--bg-main);
   box-shadow: 0 0 7px gray, 0 0 20px black;
+}
+
+.dialog {
+  background-color: #dfefef;
 }

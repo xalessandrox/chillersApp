@@ -9,33 +9,32 @@
       <div class="card-body">
 
         <mat-accordion [multi]="true" [displayMode]="'flat'" [togglePosition]="'after'">
-          <div class="row card-header" style="background-color: #167">
+          <div class="row header" style="background-color: #167">
             <div class="col-sm-2">Format</div>
             <div class="col-sm-3">State</div>
             <div class="col">Begin</div>
             <div class="col">End</div>
           </div>
-          <div *ngFor="let game of (state?.appData?.data?.games) | gamesSorterBy : 'createdAtDesc'; let i = index; odd as odd; even as even;">
-
-            <mat-expansion-panel [expanded]="game.gameState == GameState.STARTED" hideToggle="false" style="background-color: #167 !important;">
-              <mat-expansion-panel-header><mat-panel-title>
-                <div class="col-sm-2">{{ getGameFormat(game.gameFormat) }}</div>
-                <div class="col-sm-3">{{game.gameState}}</div>
-                <div class="col">{{game.createdAt | date: 'yy-MM-dd HH:mm'}}</div>
-                <div *ngIf="game.gameState == GameState.FINISHED"
-                     class="col">{{game.finishedAt | date: 'yy-MM-dd HH:mm'}}</div>
-                <div *ngIf="game.gameState == GameState.STARTED" class="col" [(ngModel)]="game.outcome" ngDefaultControl>
-                  <button class="btn btn-custom btn-draw" (click)="openGameDialog(Outcome.Draw, game)">
-                    DRAW
-                  </button>
-                  <button class="btn btn-custom btn-scrap" (click)="openGameDialog(Outcome.Scrap, game)">
-                    SCRAP
-                  </button>
-                </div>
-              </mat-panel-title></mat-expansion-panel-header>
+          <div *ngFor="let game of (state?.appData?.data?.games) | gamesSorterBy : 'createdAtDesc'; let i = index; odd as odd; even as even;" class="expansion-panels">
+            <mat-expansion-panel [expanded]="game.gameState == GameState.STARTED" hideToggle="false"  [ngClass]="{'odd': odd, 'even': even}">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <div class="col-sm-2">{{ game.gameFormat }}</div>
+                  <div class="col-sm-3">{{game.gameState}}</div>
+                  <div class="col">{{game.createdAt | date: 'yy-MM-dd HH:mm'}}</div>
+                  <div *ngIf="game.gameState == GameState.FINISHED" class="col">{{game.finishedAt | date: 'yy-MM-dd HH:mm'}}</div>
+                  <div *ngIf="game.gameState == GameState.STARTED" class="col" [(ngModel)]="game.outcome" ngDefaultControl>
+                    <button class="btn btn-custom btn-draw" (click)="openGameDialog(Outcome.Draw, game, $event)">
+                      DRAW
+                    </button>
+                    <button class="btn btn-custom btn-scrap" (click)="openGameDialog(Outcome.Scrap, game, $event)">
+                      SCRAP
+                    </button>
+                  </div>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
               <app-game #gameChild [game]="game" [canBeSetFinished]="game.gameState == GameState.STARTED"
-                        (refreshPlayers)="updatePlayers()"
-                        (refreshGames)="loadData()">
+                        (refreshPlayers)="updatePlayers()" (refreshGames)="loadData()">
               </app-game>
             </mat-expansion-panel>
           </div>

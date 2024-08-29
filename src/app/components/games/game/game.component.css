@@ -15,6 +15,7 @@
   color: whitesmoke;
 }
 .select-winner *:hover {
+  cursor: pointer;
   background-color: green;
 }
 

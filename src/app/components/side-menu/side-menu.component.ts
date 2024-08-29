@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Game } from "../../interfaces/Game";
 import { NgIf, NgStyle } from '@angular/common';
-import { GameDialogComponent } from "../modals/game-dialog/game-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
 import { ToastrService } from "ngx-toastr";
 import { AddPlayerDialogComponent } from "./dialog/add-player-dialog/add-player-dialog.component";

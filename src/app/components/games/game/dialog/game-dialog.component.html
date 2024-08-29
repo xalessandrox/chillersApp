@@ -1,0 +1,24 @@
+<ng-container>
+  <mat-dialog-content tabindex="-1" aria-labelledby="gameModalLabel" aria-hidden="true" class="dialog">
+
+    <div *ngIf="!(outcome === Outcome.Scrap)">
+      <div mat-dialog-title class="text-center">Choose MVP</div>
+      <hr>
+      <div>Team1</div>
+      <div *ngFor="let player of getPlayersFromTeam1(game)" class="row mb-1" [ngClass]="{'winner-team' : outcome === Outcome.Team1_Wins }">
+        <div class="col-md-6 text-center">{{ player.nickname }}</div>
+        <input [(ngModel)]="game.mvp" type="radio" [value]="player" id="{{ player.id }}" name="mvp" class="col-md-6"/>
+      </div>
+      <hr>
+      <div>Team2</div>
+      <div *ngFor="let player of getPlayersFromTeam2(game)" class="row mb-1" [ngClass]="{'winner-team' : outcome === Outcome.Team2_Wins }">
+        <div class="col-md-6 text-center">{{ player.nickname }}</div>
+        <input [(ngModel)]="game.mvp" type="radio" [value]="player" id="{{ player.id }}" name="mvp" class="col-md-6"/>
+      </div>
+    </div>
+    <mat-dialog-actions>
+      <button class="btn btn-warning mx-2" mat-dialog-close (click)="resetGameValues(game)">Cancel</button>
+      <button class="btn btn-success" (click)="saveGame()">Save</button>
+    </mat-dialog-actions>
+  </mat-dialog-content>
+</ng-container>

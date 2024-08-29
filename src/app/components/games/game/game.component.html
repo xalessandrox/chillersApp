@@ -1,21 +1,14 @@
 <ng-container *ngIf="gameState$ | async as state" [ngSwitch]="state.dataState">
   <ng-container *ngSwitchCase="DataState.Loaded">
 
-
-
     <section class="container">
-      <div class="row" [ngClass]="{ 'select-winner': canBeSetFinished  }"
-           [ngStyle]="{'pointer-events' : canBeSetFinished ? 'initial' : 'none'}">
-        <!-- FIRST TEAM -->
+      <div class="row" [ngClass]="{ 'select-winner': canBeSetFinished  }" [ngStyle]="{'pointer-events' : canBeSetFinished ? 'initial' : 'none'}">
+
+        <!--             Team 1 -->
         <div class="wrapper row mb-3 mt-2"
-             [ngStyle]="{ 'color':
-           state?.appData?.data?.game?.gameState == 'STARTED' ? 'white' :
-           state?.appData?.data?.game?.outcome == 'TEAM1_WINS' ? 'green' :
-           state?.appData?.data?.game?.outcome == 'DRAW' ? 'orange' :
-           state?.appData?.data?.game?.outcome == 'SCRAP' ? 'gray' : ''}"
-             (click)="openSaveDialog(Outcome.Team1_Wins)">
-          <div class="col-sm-2">Team 1
-            <span *ngIf="state?.appData?.data?.game?.outcome == 'TEAM1_WINS'">Wins</span>
+             [ngStyle]="{ 'color': renderer({game: state?.appData?.data?.game, flag: 'TEAM_1'})}" (click)="openSaveDialog(Outcome.Team1_Wins)">
+          <div class="col-sm-2">
+            <span *ngIf="state?.appData?.data?.game?.outcome == 'TEAM1_WINS'">Winners</span>
             <span *ngIf="state?.appData?.data?.game?.outcome == 'DRAW'">DRAW</span>
           </div>
           <div class="col-sm-10">
@@ -25,20 +18,16 @@
             </div>
           </div>
         </div>
-        <!-- SECOND TEAM -->
+
+        <!--             Team 2 -->
         <div class="wrapper row mb-3"
-             [ngStyle]="{ 'color':
-           state?.appData?.data?.game?.gameState == 'STARTED' ? 'white' :
-           state?.appData?.data?.game?.outcome == 'TEAM2_WINS' ? 'green' :
-           state?.appData?.data?.game?.outcome == 'DRAW' ? 'orange' :
-           state?.appData?.data?.game?.outcome == 'SCRAP' ? 'gray' : 'tomato'}"
-             (click)="openSaveDialog(Outcome.Team2_Wins)">
-          <div class="col-sm-2">Team 2
-            <span *ngIf="state?.appData?.data?.game?.outcome == 'TEAM2_WINS'">Wins</span>
+             [ngStyle]="{ 'color':  renderer({game: state?.appData?.data?.game, flag: 'TEAM_2'})}" (click)="openSaveDialog(Outcome.Team2_Wins)">
+          <div class="col-sm-2">
+            <span *ngIf="state?.appData?.data?.game?.outcome == 'TEAM2_WINS'">Winners</span>
             <span *ngIf="state?.appData?.data?.game?.outcome == 'DRAW'">DRAW</span>
           </div>
           <div class="col-sm-10">
-            <div class="row" *ngFor="let player of (state?.appData?.data?.team2);  let i = index" class="group-players">
+            <div class="group-players" *ngFor="let player of (state?.appData?.data?.team2);  let i = index">
               <span><img src="{{  player?.image_url }}" alt="imm" height="20" width="auto"/>{{ player?.nickname }}</span>
               <span class="badge bg-success" [ngStyle]="{'opacity': state?.appData?.data?.game?.mvp?.nickname === player.nickname ? '1' : '0'}">MVP</span>
             </div>
