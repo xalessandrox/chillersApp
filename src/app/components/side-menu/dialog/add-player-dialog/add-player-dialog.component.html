@@ -1,0 +1,21 @@
+<ng-container>
+  <mat-dialog-content tabindex="-1" aria-labelledby="gameModalLabel" aria-hidden="true">
+    <div mat-dialog-title>
+      New player
+    </div>
+    <div class="form">
+      <mat-form-field>
+        <mat-label>Nickname</mat-label>
+        <input matInput #nickname>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Points (default=500)</mat-label>
+        <input matInput value="500" placeholder="500" #points>
+      </mat-form-field>
+    </div>
+    <mat-dialog-actions>
+      <button class="btn btn-success" (click)="createPlayer(nickname, points)">Confirm</button>
+    </mat-dialog-actions>
+  </mat-dialog-content>
+</ng-container>
+

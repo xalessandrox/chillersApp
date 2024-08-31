@@ -1,0 +1,67 @@
+section {
+  color: white;
+  background: var(--bg-main-light);
+  box-shadow: 0 0 7px gray, 0 0 20px black;
+}
+
+.next-format {
+  color: #666;
+}
+
+.show-format {
+  color: #fcf3e1;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+
+  .players-next-game {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    width: 100%;
+  }
+
+  .teams {
+    border-radius: 10px;
+  }
+
+  .team-one-style {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .team-two-style {
+    background-color: #238;
+  }
+
+  .footer {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    .with-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 45%;
+      gap: 0.2rem;
+    }
+  }
+
+  @media  screen and (max-width: 576px) {
+    .footer {
+      gap: 0.2rem;
+      flex-direction: column;
+      .with-icon {
+        width: 100%;
+      }
+    }
+
+  }
+
+}
