@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -16,42 +16,70 @@ import { FormsModule } from "@angular/forms";
 import { ToastrModule } from "ngx-toastr";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
-import { GameModalComponent } from './components/modals/game-modal/game-modal.component';
-import { NewGameModalComponent } from './components/modals/new-game-modal/new-game-modal.component';
+import { GameDialogComponent } from './components/modals/game-dialog/game-dialog.component';
+import { NewGameComponent } from './components/games/new-game/new-game.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {
+  MAT_DIALOG_DEFAULT_OPTIONS,
+  MatDialogActions,
+  MatDialogContent,
+  MatDialogTitle
+} from "@angular/material/dialog";
+import { AddPlayerDialogComponent } from './components/side-menu/dialog/add-player-dialog/add-player-dialog.component';
+import { MatFormField, MatLabel } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
 
 @NgModule( {
-	declarations : [
-		AppComponent,
-		HomeComponent,
-		PlayersComponent,
-		GamesComponent,
-		PlayersSorterByPipe,
-		GamesSorterByPipe,
-		GameComponent,
-		SideMenuComponent,
-  GameModalComponent,
-  NewGameModalComponent
-	],
-	imports : [
-		BrowserModule,
-		BrowserAnimationsModule,
-		AppRoutingModule,
-		HttpClientModule,
-		NgOptimizedImage,
-		FormsModule,
-		ToastrModule.forRoot( {
-			preventDuplicates : true,
-			resetTimeoutOnDuplicate : false,
-			timeOut : 4000,
-			closeButton : true,
-			progressBar : true,
-			progressAnimation : 'increasing',
-			positionClass : 'toast-top-right'
-		} )
-	],
-	exports : [],
-	providers : [ PlayersService, GameService ],
-	bootstrap : [ AppComponent ]
+  declarations : [ AppComponent, AddPlayerDialogComponent ],
+  exports : [],
+  bootstrap : [ AppComponent ], imports:[
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    NgOptimizedImage,
+    FormsModule,
+    ToastrModule.forRoot({
+      preventDuplicates:true,
+      resetTimeoutOnDuplicate:false,
+      timeOut:3000,
+      closeButton:true,
+      progressBar:false,
+      progressAnimation:'increasing',
+      positionClass:'toast-top-right'
+    }),
+    HomeComponent,
+    PlayersComponent,
+    GamesComponent,
+    PlayersSorterByPipe,
+    GamesSorterByPipe,
+    GameComponent,
+    SideMenuComponent,
+    GameDialogComponent,
+    NewGameComponent,
+    MatDialogActions,
+    MatDialogContent,
+    MatDialogTitle,
+    MatFormField,
+    MatLabel,
+    MatInput
+  ],
+  providers : [
+    PlayersService,
+    GameService,
+    provideHttpClient( withInterceptorsFromDi() ),
+    provideAnimationsAsync(),
+    {
+      provide: MAT_DIALOG_DEFAULT_OPTIONS,
+      useValue: {
+        hasBackdrop: true,
+        width: '50%',
+        minHeight: '25%',
+        maxHeight: '50%',
+        enterAnimationDuration: '250ms',
+        exitAnimationDuration: '125'
+      }
+    }
+  ]
 } )
 export class AppModule {
 }

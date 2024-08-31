@@ -5,7 +5,6 @@ import { CustomHttpResponse } from "../interfaces/CustomHttpResponse";
 import { environment } from "../../environments/environment.development";
 import { Game } from "../interfaces/Game";
 import { Player } from "../interfaces/Player";
-import { GameDto } from "../interfaces/dtos/GameDto";
 
 @Injectable( {
 	providedIn : 'root'
@@ -31,11 +30,16 @@ export class GameService {
 			catchError( this.handleError )
 		)
 
+  createGame$ = (game: Game) => <Observable<CustomHttpResponse<Game>>>
+  this.httpClient.post<CustomHttpResponse<Game>>
+( `${ environment.baseUrl }:${ environment.serverPort }/games/new`, game )
+    .pipe(catchError(this.handleError));
+
 	saveGame$ = ( game: Game ) => <Observable<CustomHttpResponse<Game>>>
 		this.httpClient.patch<CustomHttpResponse<Game>>
 		( `${ environment.baseUrl }:${ environment.serverPort }/games/save`, game )
 		.pipe(
-			tap( () => console.log("Where am I?") ),
+			// tap( () => console.log("Where am I?") ),
 			catchError( this.handleError )
 		);
 

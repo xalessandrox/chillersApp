@@ -1,37 +1,60 @@
-.badge {
-  width: 100%;
-  font-size: 1.2rem !important;
-  background-color: var(--bg-secondary);
+section {
+  color: white;
+  background: var(--bg-main-light);
+  box-shadow: 0 0 7px gray, 0 0 20px black;
+  height: 99%;
+
+  i {
+    padding-left: 0.5rem;
+    color: hsla(30, 30%, 30%, 0.4);
+  }
+
+  ul {
+
+    li {
+      margin-bottom: 0.2rem;
+      width: 100%;
+    }
+
+    .badge {
+      font-size: 0.8rem !important;
+      background-color: var(--bg-main);
+      color: var(--fg-secondary);
+      padding: 0.5rem;
+      border: 1px solid transparent;
+      width: 100%;
+
+      .with-icon {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .left-group {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          gap: 1rem;
+        }
+
+      }
+
+      //&:has(.can-pick) {
+      //  width: 50%;
+      //  background: transparent;
+      //  font-size: 60px;
+      //}
+    }
+
+    .selected {
+      color: yellowgreen;
+      border: 1px solid yellow;
+    }
+
+    .can-pick {
+      box-shadow: 0px 0px 3px gray, 0px 0px 6px #445566;
+    }
+
+  }
+
 }
 
-.head {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.body ul {
-  display: flex;
-  min-width: 100%;
-  max-width: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.ul {
-  //overflow-x: auto !important;
-  //overflow-y: auto;
-  //-ms-overflow-x: visible !important;
-}
-
-.bi.bi-person-fill-add {
-  color: green;
-}
-
-sub {
-  font-size: 0.5rem;
-  margin-left: 5px;
-}
-.add-new-player:hover {
-  cursor: pointer;
-}

@@ -1,25 +1,17 @@
 
+.home-container{
+  height: 100vh;
 
-  .title {
-    background-color: var(--bg-secondary);
-    //background: url("/assets/civ6_background3.png") top;
-    background-position-y: top;
-    background-position-x: left;
-    background-size: auto;
-    height: 6rem;
-    max-width: 105%;
-    //animation: animaBack 5s infinite alternate;
+  .header {
+    background: var(--bg-secondary);
+    line-height: 6rem;
     h1 {
       font-weight: bold;
     }
-
   }
 
-@keyframes animaBack {
-  from {
-    background-position-y: top;
+  .content {
+    flex-grow: 1;
   }
-  to {
-    background-position-y: bottom;
-  }
+
 }

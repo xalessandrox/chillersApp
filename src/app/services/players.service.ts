@@ -4,38 +4,47 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Player } from "../interfaces/Player";
 import { environment } from "../../environments/environment.development";
 import { CustomHttpResponse } from "../interfaces/CustomHttpResponse";
+import { Game } from "../interfaces/Game";
+import { PlayerSave } from "../interfaces/PlayerSave";
 
-@Injectable( {
-	providedIn : 'root'
-} )
+@Injectable({
+  providedIn:'root'
+})
 export class PlayersService {
 
-	constructor( private httpClient: HttpClient ) {
-	}
+  constructor(private httpClient: HttpClient) {
+  }
 
 
-	players$ = () => <Observable<CustomHttpResponse<Player>>>
-		this.httpClient.get<CustomHttpResponse<Player>>
-		( `${ environment.baseUrl }:${ environment.serverPort }/players/all` )
-		.pipe(
-			tap( () => console.log() ),
-			catchError( this.handleError )
-		)
+  players$ = () => <Observable<CustomHttpResponse<Player & Game>>>
+    this.httpClient.get<CustomHttpResponse<Player>>
+    (`${ environment.baseUrl }:${ environment.serverPort }/players/all`)
+    .pipe(
+      tap(() => console.log(`CALLING ${ environment.baseUrl }:${ environment.serverPort }`)),
+      catchError(this.handleError)
+    )
 
-	private handleError( response: HttpErrorResponse ): Observable<never> {
-		console.log( response );
-		let errorMessage: string;
-		if (response.error instanceof ErrorEvent) {
-			errorMessage = `A client error occurred - ${ response.error.message }`;
-		} else {
-			if (response.error.reason) {
-				errorMessage = response.error.reason;
-				console.log( errorMessage );
-			} else {
-				errorMessage = `An error occurred - Error status ${ response.status }`;
-			}
-		}
-		return throwError( () => errorMessage );
-	}
+  createPlayer$ = ({ nickname, points }) => <Observable<CustomHttpResponse<unknown>>>
+    this.httpClient.post<CustomHttpResponse<unknown>>
+    (`${ environment.baseUrl }:${ environment.serverPort }/players`, { nickname, points })
+    .pipe(
+      catchError(this.handleError)
+    );
+
+  private handleError(response: HttpErrorResponse): Observable<never> {
+    console.log(response);
+    let errorMessage: string;
+    if (response.error instanceof ErrorEvent) {
+      errorMessage = `A client error occurred - ${ response.error.message }`;
+    } else {
+      if (response.error.reason) {
+        errorMessage = response.error.reason;
+        console.log(errorMessage);
+      } else {
+        errorMessage = `An error occurred - Error status ${ response.status }`;
+      }
+    }
+    return throwError(() => errorMessage);
+  }
 
 }

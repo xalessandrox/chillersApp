@@ -1,7 +1,44 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the theme object.
+$chillersApp-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  density: (
+    scale: 0,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+:root {
+  @include mat.all-component-themes($chillersApp-theme);
+}
+
+// Comment out the line below if you want to use the pre-defined typography utility classes.
+// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
+// @include mat.typography-hierarchy($chillersApp-theme);
+
+// Comment out the line below if you want to use the deprecated `color` inputs.
+// @include mat.color-variants-backwards-compatibility($chillersApp-theme);
 @import 'ngx-toastr/toastr';
 
 :root {
   --bg-main: #234;
+  --bg-main-light: #345;
   --bg-secondary: #002;
   --fg-main: #397;
   --fg-secondary: #CCA;
@@ -13,27 +50,109 @@
 }
 
 * {
-  padding:0;
+  margin: 0;
+  padding: 0;
   border: 0;
 }
 
 html {
-  font-size: 22px;
+  font-size: 18px;
 }
 
 body {
   background: var(--bg-main);
-  //background: url("assets/civ6_background3.png");
-  background-size: cover;
-  color: var(--bg-main);
+  color: var(--fg-main);
   overflow: auto;
-  min-height: 10dvh;
+  animation: animaBack 5s infinite ease;
+
+  .btn-custom {
+    color: white;
+    //background-color: hsla(200, 50%, 40%, 0.2);
+    border-radius: 10px;
+    box-shadow: 2px 2px transparent, 1px 1px transparentize(#FFF, 0.5);
+
+
+    &.btn-draw {
+      border: darkorange 1px solid;
+
+      &:hover {
+        color: darkorange;
+        border-color: gold;
+        box-shadow: 1px 1px darkorange;
+      }
+
+      &:active {
+        box-shadow: inherit;
+      }
+    }
+
+    &.btn-scrap {
+      border: darkslateblue 1px solid;
+
+      &:hover {
+        color: darkslateblue;
+        border-color: slateblue;
+        box-shadow: 1px 1px darkslateblue;
+      }
+
+      &:active {
+        box-shadow: inherit;
+      }
+    }
+
+    &.btn-reset-teams {
+      border: darkred 1px solid;
+
+      &:hover {
+        color: palevioletred;
+        border-color: orangered;
+        box-shadow: 1px 1px 200px darkred;
+      }
+
+      &:active {
+        box-shadow: 1px 1px #eee, -1px -1px #555;
+
+      }
+    }
+
+    &.btn-make-teams {
+      border: darkcyan 1px solid;
+
+      &:hover {
+        color: darkcyan;
+        border-color: #223344;
+        box-shadow: 1px 1px 200px darkcyan;
+      }
+
+      &:active {
+        box-shadow: 1px 1px #eee, -1px -1px #555;
+
+      }
+    }
+
+  }
 }
 
 li {
   list-style: none;
 }
 
-[ng\:cloak],  [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+[ng\:cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
+}
+
+button:disabled,
+button[disabled] {
+  opacity: 0.6;
+  color: gray !important;
+  text-shadow: 1px 1px white !important;
+  pointer-events: none;
+}
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+section {
+  color: white;
+  background: var(--bg-main);
+  box-shadow: 0 0 7px gray, 0 0 20px black;
 }

@@ -1,24 +1,35 @@
 <ng-container>
-  <section class="container-fluid">
-    <div >
-      <div class="title row text-center pt-3">
-        <h1>natural born chillers</h1>
+  <div class="container-fluid d-flex flex-column justify-content-center align-items-stretch home-container">
+    <div class="header row text-center py-2">
+      <h1>chillers</h1>
+    </div>
+    <div class="row mt-3 content">
+      <div class="col-md-12 col-xl-2">
+        <app-side-menu [isEditMode]="isNewGameMode" (switchEditMode)="switchEditMode($event)" (refreshPlayers)="refreshPlayers()"></app-side-menu>
       </div>
 
-      <div class="row mt-3">
+      <div class="col-sm-12 col-md-4 col-xl-3  players">
+        <app-players #playersComponent [isEditMode]="isNewGameMode"
+                     (playersNextGameOutput)="sendPlayersNextGameToNewGame($event)"
+                     [playersNextGameInput]="playersNextGame">
+        </app-players>
+      </div>
 
-        <div class="col-sm-1">
-          <app-side-menu></app-side-menu>
-        </div>
-
-        <div class="col-sm-3">
-          <app-players></app-players>
-        </div>
-
-        <div class="col-sm-8">
-          <app-games></app-games>
-        </div>
+      <div class="col-sm-12 col-md col-xl">
+        <app-games *ngIf="!isNewGameMode" #gamesComponent
+                   [isEditMode]="isNewGameMode"
+                   (refreshPlayers)="refreshPlayers()">
+        </app-games>
+        <app-new-game *ngIf="isNewGameMode"
+                      [isEditMode]="isNewGameMode"
+                      [players]="players"
+                      [playersNextGame]="playersNextGame"
+                      (onModeChange)="switchEditMode($event)"
+                      (unselectPlayersNextGame)="refreshPlayers()"
+                      (refreshGames)="refreshGames()"
+                      (refreshPlayers)="refreshPlayers()">
+        </app-new-game>
       </div>
     </div>
-  </section>
+  </div>
 </ng-container>

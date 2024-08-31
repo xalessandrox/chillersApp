@@ -1,22 +1,15 @@
-.title {
-  background-color: var(--bg-secondary);
-  background-position-y: top;
-  background-position-x: left;
-  background-size: auto;
-  height: 6rem;
-  max-width: 105%;
+.home-container {
+  height: 100vh;
 }
-.title h1 {
+.home-container .header {
+  background: var(--bg-secondary);
+  line-height: 6rem;
+}
+.home-container .header h1 {
   font-weight: bold;
 }
-
-@keyframes animaBack {
-  from {
-    background-position-y: top;
-  }
-  to {
-    background-position-y: bottom;
-  }
+.home-container .content {
+  flex-grow: 1;
 }
 
 /*# sourceMappingURL=home.component.css.map */

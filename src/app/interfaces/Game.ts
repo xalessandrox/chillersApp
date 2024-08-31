@@ -7,7 +7,7 @@ export interface Game {
 	id: number,
 	team1: Player[],
 	team2: Player[],
-  gameFormat: GameFormat,
+  gameFormat: GameFormat | string,
 	gameState?: GameState,
 	createdAt?: Date,
 	finishedAt?: Date,

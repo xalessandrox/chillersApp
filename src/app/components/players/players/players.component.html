@@ -1,24 +1,32 @@
 <ng-container *ngIf="playersState$ | async as state" [ngSwitch]="state.dataState">
   <ng-container *ngSwitchCase="DataState.Loaded">
-    <section>
-      <div class="container" style="color:white">
-        <div class="head">
-          <span class="me-2">PLAYERS</span>
-
-        </div>
-        <div class="body">
-          <ul style="font-size: 0.6rem">
-            <li *ngFor="let player of (state?.appData?.data?.players | playersSorterBy: 'playerPoints');">
-              <div class="badge mb-1">
-<!--                 {{ i }} -->
-                <img src="{{ player.image_url }}" width="20" alt="p_img">
-                {{ player.nickname }}
-                {{ player.playerPoints }}
+    <section class="card">
+      <div class="card-header text-center">
+        <span>PLAYERS</span>
+      </div>
+      <div class="card-body">
+        <ul class="list-group-item">
+          <li *ngFor="let player of (state?.appData?.data?.players | playersSorterBy: 'points');"
+              class="list-item">
+            <button class="badge mb-1" (click)="pickPlayer(player)"
+                    [disabled]="!player.isAvailable"
+                    [ngStyle]="{'cursor' : player.isAvailable && isEditMode ? 'pointer' : 'initial'}"
+                    [ngClass]="{ 'selected' : playersNextGame.includes(player) && isEditMode, 'can-pick': player.isAvailable && isEditMode }">
+              <div class="with-icon">
+                <div class="left-group">
+                  <img src="{{ player.image_url }}" width="20" height="auto" alt="p_img">
+                  <span>{{ player.nickname }}</span>
+                  <span>{{ player.points }}</span>
+                </div>
+                <div class="icon">
+                  <span [ngStyle]="{'opacity': player.isAvailable ? '0' : '1'}"><i class="bi bi-play-fill"></i></span>
+                </div>
               </div>
-            </li>
-          </ul>
-        </div>
+            </button>
+          </li>
+        </ul>
       </div>
     </section>
   </ng-container>
 </ng-container>
+<!-- [ngStyle]="{ 'border-color': !isEditMode ? 'transparent' : player.isAvailable ? 'green' : 'brown'}" -->
